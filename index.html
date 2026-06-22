@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safiyyah Nawaz, PhD</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a3a52;
+            --secondary-color: #2d5a7b;
+            --accent-color: #4a90e2;
+            --text-color: #333333;
+            --light-bg: #f8f9fa;
+            --border-color: #e0e0e0;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        header .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.95;
+            margin-bottom: 1rem;
+        }
+
+        header .contact-info {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        header .contact-info a {
+            color: var(--white);
+            text-decoration: none;
+            margin: 0 0.5rem;
+            transition: opacity 0.3s;
+        }
+
+        header .contact-info a:hover {
+            opacity: 0.8;
+        }
+
+        nav {
+            background: var(--white);
+            padding: 1rem 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 0.25rem;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+            border-bottom-color: var(--accent-color);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        section h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            font-weight: 400;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .about-content {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .experience-item, .publication-item, .project-item {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .experience-item:last-child, .publication-item:last-child, .project-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .item-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .item-subtitle {
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        .item-date {
+            color: #888;
+            font-size: 0.95rem;
+            font-style: italic;
+        }
+
+        .item-description {
+            color: #666;
+            margin-top: 0.5rem;
+            line-height: 1.7;
+        }
+
+        .publication-item .journal {
+            color: var(--secondary-color);
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: var(--light-bg);
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .skill-category li:before {
+            content: "▸ ";
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+            font-size: 0.95rem;
+        }
+
+        footer a {
+            color: var(--white);
+            text-decoration: none;
+            margin: 0 0.5rem;
+            transition: opacity 0.3s;
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            header .subtitle {
+                font-size: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+
+            section h2 {
+                font-size: 1.4rem;
+            }
+
+            .item-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .button {
+            display: inline-block;
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background 0.3s;
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        .button:hover {
+            background: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Safiyyah Nawaz, PhD</h1>
+        <div class="subtitle">Your Academic Title & Focus Area</div>
+        <div class="contact-info">
+            <a href="mailto:your.email@example.com">Email</a> •
+            <a href="https://linkedin.com" target="_blank">LinkedIn</a> •
+            <a href="https://github.com" target="_blank">GitHub</a> •
+            <a href="https://orcid.org" target="_blank">ORCID</a>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- About Section -->
+        <section id="about">
+            <h2>About</h2>
+            <div class="about-content">
+                <p>
+                    Welcome to my academic website. I am a researcher and scholar focused on [your research area]. With [X] years of experience in [field], I combine theoretical expertise with practical application to address meaningful challenges in [domain].
+                </p>
+                <p>
+                    My research interests include [topic 1], [topic 2], and [topic 3]. I am passionate about [your goals] and committed to advancing knowledge through rigorous inquiry and collaboration.
+                </p>
+                <p>
+                    Currently, I am [your current position/role]. In my free time, I enjoy [personal interests].
+                </p>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience">
+            <h2>Experience</h2>
+
+            <div class="experience-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Position Title</div>
+                        <div class="item-subtitle">Institution/Organization Name</div>
+                    </div>
+                    <div class="item-date">Month Year – Present</div>
+                </div>
+                <div class="item-description">
+                    Brief description of your role, responsibilities, and key achievements. Highlight what you accomplished and any impact you made in this position.
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Previous Position</div>
+                        <div class="item-subtitle">Previous Institution/Organization</div>
+                    </div>
+                    <div class="item-date">Month Year – Month Year</div>
+                </div>
+                <div class="item-description">
+                    Description of your previous role, key responsibilities, and accomplishments. Focus on relevant experience that demonstrates your expertise and career progression.
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">PhD in [Field]</div>
+                        <div class="item-subtitle">University Name</div>
+                    </div>
+                    <div class="item-date">Year – Year</div>
+                </div>
+                <div class="item-description">
+                    Dissertation title: "[Your Dissertation Title]". Brief summary of your research focus and key findings.
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications">
+            <h2>Publications</h2>
+
+            <div class="publication-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Article Title in Title Case</div>
+                        <div class="item-subtitle">Your Name, Co-Author Names</div>
+                    </div>
+                    <div class="item-date">2024</div>
+                </div>
+                <div class="journal">Journal Name, Volume(Issue), pages. DOI: 10.xxxx/xxxxx</div>
+                <div class="item-description">
+                    Brief abstract or summary of the paper's main contributions and findings.
+                </div>
+                <div class="tags">
+                    <span class="tag">Research Topic</span>
+                    <span class="tag">Methodology</span>
+                    <span class="tag">Domain</span>
+                </div>
+            </div>
+
+            <div class="publication-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Another Publication Title</div>
+                        <div class="item-subtitle">Your Name, Co-Author Names</div>
+                    </div>
+                    <div class="item-date">2023</div>
+                </div>
+                <div class="journal">Conference Name: Proceedings of [Conference], pages. DOI: 10.xxxx/xxxxx</div>
+                <div class="item-description">
+                    Summary of this publication's key contributions and relevance to your research agenda.
+                </div>
+                <div class="tags">
+                    <span class="tag">Topic 1</span>
+                    <span class="tag">Topic 2</span>
+                </div>
+            </div>
+
+            <div class="publication-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Book Chapter or Preprint</div>
+                        <div class="item-subtitle">Your Name, Co-Authors</div>
+                    </div>
+                    <div class="item-date">2023</div>
+                </div>
+                <div class="journal">Book Title / arXiv:XXXX.XXXXX</div>
+                <div class="item-description">
+                    Brief description of the book chapter or preprint and its contribution to your field.
+                </div>
+                <div class="tags">
+                    <span class="tag">Category</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>Projects</h2>
+
+            <div class="project-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Project Title</div>
+                        <div class="item-subtitle">Role: Project Lead / Researcher / Collaborator</div>
+                    </div>
+                    <div class="item-date">2023 – 2024</div>
+                </div>
+                <div class="item-description">
+                    Description of your project, its objectives, methodology, and outcomes. Include the impact and relevance to your field.
+                </div>
+                <div class="tags">
+                    <span class="tag">Technology/Method 1</span>
+                    <span class="tag">Technology/Method 2</span>
+                    <span class="tag">Tool</span>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Another Project Name</div>
+                        <div class="item-subtitle">Role: Team Member / Collaborator</div>
+                    </div>
+                    <div class="item-date">2022 – 2023</div>
+                </div>
+                <div class="item-description">
+                    Summary of this project, your contribution, and the results or deliverables. Link to relevant resources if available.
+                </div>
+                <div class="tags">
+                    <span class="tag">Relevant Tag</span>
+                    <span class="tag">Another Tag</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2>Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Research Methods</h3>
+                    <ul>
+                        <li>Qualitative Analysis</li>
+                        <li>Quantitative Research</li>
+                        <li>Mixed Methods</li>
+                        <li>Experimental Design</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Technical Skills</h3>
+                    <ul>
+                        <li>Python</li>
+                        <li>R Statistical Analysis</li>
+                        <li>Data Visualization</li>
+                        <li>Machine Learning</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Domain Expertise</h3>
+                    <ul>
+                        <li>Topic Area 1</li>
+                        <li>Topic Area 2</li>
+                        <li>Topic Area 3</li>
+                        <li>Specialized Knowledge</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Contact</h2>
+            <div class="about-content">
+                <p>
+                    I'm always interested in discussing research, collaboration opportunities, and professional inquiries. Feel free to reach out!
+                </p>
+                <p>
+                    <strong>Email:</strong> <a href="mailto:your.email@example.com" style="color: var(--accent-color); text-decoration: none;">your.email@example.com</a><br>
+                    <strong>Office:</strong> Building Name, Room 123, University Name<br>
+                    <strong>Phone:</strong> +1 (XXX) XXX-XXXX
+                </p>
+                <a href="mailto:your.email@example.com" class="button">Send me an email</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>
+            &copy; 2024 Safiyyah Nawaz. All rights reserved. |
+            <a href="https://github.com" target="_blank">GitHub</a> •
+            <a href="https://linkedin.com" target="_blank">LinkedIn</a> •
+            <a href="https://orcid.org" target="_blank">ORCID</a>
+        </p>
+    </footer>
+</body>
+</html>
