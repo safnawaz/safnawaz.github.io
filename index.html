@@ -123,6 +123,41 @@
             display: inline-block;
         }
 
+        .about-section {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .about-profile {
+            flex: 0 0 320px;
+            min-width: 250px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .profile-photo {
+            width: 100%;
+            max-width: 320px;
+            aspect-ratio: 1 / 1;
+            border-radius: 18px;
+            background: #f2f2f2;
+            border: 1px dashed var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 0.95rem;
+            padding: 1rem;
+            text-align: center;
+        }
+
         .about-content {
             font-size: 1.05rem;
             line-height: 1.8;
@@ -323,16 +358,23 @@
         <!-- About Section -->
         <section id="about">
             <h2>About Me</h2>
-            <div class="about-content">
-                <p>
-                    I am a researcher and artist interested in understanding the intersection of human cognition and aesthetic experiences, with a particular interest in exploring the role of music in autobiographical memory processes.
-                </p>
-                <p>
-                    My research approach incorporates methodologies from across music psychology, cognitive science and computing.
-                </p>
-                <p>
-                    Outside of academia....music production, illustration, DJ, jewellery making, graphic design...., public engagement
-                </p>
+            <div class="about-section">
+                <div class="about-text about-content">
+                    <p>
+                        I am a researcher and artist interested in understanding the intersection of human cognition and aesthetic experiences, with a particular interest in exploring the role of music in autobiographical memory processes.
+                    </p>
+                    <p>
+                        My research approach incorporates methodologies from across music psychology, cognitive science and computing.
+                    </p>
+                    <p>
+                        Outside of academia: music production, illustration, DJ, jewellery making, graphic design, public engagement.
+                    </p>
+                </div>
+                <div class="about-profile">
+                    <div class="profile-photo">
+                        <img src = "images/profile.JPG" alt="Profile Photo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 18px;">
+                    </div>
+                </div>
             </div>
         </section>
 
