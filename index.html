@@ -334,6 +334,53 @@
         .button:hover {
             background: var(--primary-color);
         }
+        /* Tooltip for Sofar image */
+        .tooltip {
+            position: relative;
+            cursor: pointer;
+            color: var(--primary-color);
+            text-decoration: underline;
+            display: inline-block;
+        }
+        .tooltip .tooltip-content {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 120%;
+            background: rgba(0,0,0,0.85);
+            padding: 8px;
+            border-radius: 8px;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 260px;
+        }
+        .tooltip .tooltip-content img {
+            display: block;
+            max-width: 220px;
+            max-height: 160px;
+            width: auto;
+            height: auto;
+            border-radius: 6px;
+        }
+        .tooltip-caption {
+            margin-top: 6px;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+        .tooltip:hover .tooltip-content,
+        .tooltip:focus .tooltip-content {
+            display: block;
+        }
+        @media (max-width: 600px) {
+            .tooltip .tooltip-content {
+                left: auto;
+                right: 0;
+                transform: none;
+                bottom: 140%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -370,7 +417,13 @@
                         My research approach incorporates methodologies from across disciplines including neuroimaging, virtual reality, behavioural experimentation, signal processing, natural language processing and experience sampling. I am a keen advocate for open science and decolonial approaches to research, which shape my perspective as a researcher. 
                     </p>
                     <p>
-                        Alongside my academic work, I have worked in live event and cultural settings as an concert MC for Sofar Sounds, a panelist at Houghton Music Festival, as a collaborator for museum-based studies at Manchester Art Gallery, and as a freelance graphic designer. I work across a range of creative disciplines, including music production, DJing, illustration, graphic design and jewellery making.  
+                        Alongside my academic work, I have worked in live event and cultural settings as a 
+                        <span class="tooltip" tabindex="0" aria-describedby="sofar-tip">MC for Sofar Sounds
+                            <span class="tooltip-content" id="sofar-tip" role="img" aria-label="Sofar Sounds poster">
+                                <img src="images/sofar.jpeg" alt="Sofar Sounds poster" />
+                                <div class="tooltip-caption"><em>MCing a Sofar concert (2023)</em></div>
+                            </span>
+                        </span>, a panelist at Houghton Music Festival, as a collaborator for museum-based studies at Manchester Art Gallery, and as a freelance graphic designer. I work across a range of creative disciplines, including computational art, music production, DJing, illustration, graphic design and jewellery making.
                     </p>
                     <p>
                         I am deeply passionate about facilitating robust, accessible and socially meaningful research, and I welcome opportunities for collaboration, public engagement, creative projects, speaking engagements and interdisciplinary partnerships.
