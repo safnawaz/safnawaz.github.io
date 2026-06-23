@@ -110,6 +110,125 @@
             margin-bottom: 0;
         }
 
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            background: var(--white);
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.35s ease;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        .carousel-image {
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+            border-radius: 16px;
+            background: #f2f2f2;
+            margin: 0 auto 1.25rem;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 1rem;
+            pointer-events: none;
+        }
+
+        .carousel-button {
+            pointer-events: auto;
+            background: rgba(255,255,255,0.95);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .carousel-button:hover {
+            transform: scale(1.05);
+            background: #fff;
+        }
+
+        .carousel-button:disabled {
+            opacity: 0.4;
+            cursor: default;
+        }
+
+        .carousel-counter {
+            text-align: right;
+            color: #666;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .project-item .item-description {
+            margin-top: 0.75rem;
+        }
+
+        .project-item .tags {
+            margin-top: 1rem;
+        }
+
+        .project-resources {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+            color: #555;
+        }
+
+        .resource-section {
+            margin-top: 1rem;
+        }
+
+        .resource-section:first-child {
+            margin-top: 0.75rem;
+        }
+
+        .resource-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .resource-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+            color: #555;
+        }
+
+        .resource-list li {
+            margin-bottom: 0.45rem;
+            line-height: 1.6;
+        }
+
+        .resource-list li em {
+            font-style: italic;
+            color: #333;
+        }
+
         .item-header {
             display: flex;
             justify-content: space-between;
@@ -206,39 +325,135 @@
 
     <div class="container">
         <section>
-            <h2>Projects</h2>
-            <div class="project-item">
-                <div class="item-header">
-                    <div>
-                        <div class="item-title">Project Title</div>
-                        <div class="item-subtitle">Role: Project Lead / Researcher / Collaborator</div>
+            <div class="carousel">
+                <div class="carousel-track">
+                    <div class="carousel-slide">
+                        <div class="project-item">
+                            <img src="images/MR.png" alt="Project 1 screenshot" class="carousel-image" />
+                            <div class="item-header">
+                                <div>
+                                    <div class="item-title">Memory Records</div>
+                                    <div class="item-subtitle">Collaborators: Niki K (web development)</div>
+                                </div>
+                            </div>
+                            <div class="item-description">
+                                A citizen science and computational arts public engagement project; an archive of musical memories.
+                            </div>
+                            <div class="tags">
+                                <span class="tag">Computational Arts</span>
+                                <span class="tag">Autobiographical Memory</span>
+                                <span class="tag">Citizen Science</span>
+                            </div>
+                            <div class="project-resources">
+                                <div class="resource-section">
+                                    <div class="resource-title">Presentations</div>
+                                    <ul class="resource-list">
+                                        <li><em>Title of presentation</em> — Event or conference, Year</li>
+                                    </ul>
+                                </div>
+                                <div class="resource-section">
+                                    <div class="resource-title">Publications</div>
+                                    <ul class="resource-list">
+                                        <li><em>Title of publication</em> — Journal or conference, Year</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="item-date">2023 – 2024</div>
-                </div>
-                <div class="item-description">
-                    Description of your project, its objectives, methodology, and outcomes. Include the impact and relevance to your field.
-                </div>
-                <div class="tags">
-                    <span class="tag">Technology/Method 1</span>
-                    <span class="tag">Technology/Method 2</span>
-                    <span class="tag">Tool</span>
-                </div>
-            </div>
-            <div class="project-item">
-                <div class="item-header">
-                    <div>
-                        <div class="item-title">Another Project Name</div>
-                        <div class="item-subtitle">Role: Team Member / Collaborator</div>
+                    <div class="carousel-slide">
+                        <div class="project-item">
+                            <img src="images/WWW.png" alt="Project 2 screenshot" class="carousel-image" />
+                            <div class="item-header">
+                                <div>
+                                    <div class="item-title">Musical effects in an online What-Where-When paradigm</div>
+                                    <div class="item-subtitle">Collaborators: Dr. Diana Omigie (supervision), Ellen Murphy (research), Eimear North (research)</div>
+                                </div>
+                            </div>
+                            <div class="item-description">
+                                I developed an online paradigm based on the What-Where-When paradigm to investigate the effects of music on episodic memory encoding. The study was conducted using PsychoPy and hosted online. In two experiments we explored the effects of emotional music, aesthetic response and liking on encoding of spatio temporal information.
+                            </div>
+                            <div class="tags">
+                                <span class="tag">Episodic Memory</span>
+                                <span class="tag">Aesthetic Emotions</span>
+                                <span class="tag">PsychoPy</span>
+                            </div>
+                            <div class="resource-section">
+                                    <div class="resource-title">Presentations</div>
+                                    <ul class="resource-list">
+                                        <li>Nawaz, S., Omigie, D. (2021). Characterising the influence of emotional music on episodic memory using a novel ecologically valid paradigm. Poster presented at: Conference of the International Association for Empirical Aesthetics, virtual meeting.</li>
+                                    </ul>
+                                </div>
+                                <div class="resource-section">
+                                    <div class="resource-title">Publications</div>
+                                    <ul class="resource-list">
+                                        <li>Murphy, E., North, E., Nawaz, S., & Omigie, D. (2023). The influence of music liking on episodic memory for rich spatiotemporal contexts. Memory, 31(5), 589–604. <a href="https://doi.org/10.1080/09658211.2022.2154367" target="_blank">https://doi.org/10.1080/09658211.2022.2154367</a></li>
+                                        <li>Nawaz, S., & Omigie, D. (2023). Investigating the interaction of pleasantness and arousal and the role of aesthetic emotions on episodic memory using a musical what-where-when paradigm. Cognition and Emotion, 37(2), 320–328. <a href="https://doi.org/10.1080/02699931.2023.2185206" target="_blank">https://doi.org/10.1080/02699931.2023.2185206</a></li>
+                                    </ul>
+                                </div>
+                        </div>
                     </div>
-                    <div class="item-date">2022 – 2023</div>
+                    <div class="carousel-slide">
+                        <div class="project-item">
+                            <img src="images/VR.jpeg" alt="Project 3 screenshot" class="carousel-image" />
+                            <div class="item-header">
+                                <div>
+                                    <div class="item-title">Virtual Reality and Episodic Autobiographical Memory</div>
+                                    <div class="item-subtitle">Collaborators: Dr. Diana Omigie (supervision), Ju Zhang (Unity build), Dr Marco Gillies (supervision)</div>
+                                </div>
+                            </div>
+                            <div class="item-description">
+                                I developed an online paradigm based on the What-Where-When paradigm to investigate the effects of music on episodic memory encoding. The study was conducted using PsychoPy and hosted online. In two experiments we explored the effects of emotional music, aesthetic response and liking on encoding of spatio temporal information.
+                            </div>
+                            <div class="tags">
+                                <span class="tag">Virtual Reality</span>
+                                <span class="tag">Episodic Autobiographical Memory</span>
+                                <span class="tag">EEG</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="project-item">
+                            <img src="images/VR.jpeg" alt="Project 3 screenshot" class="carousel-image" />
+                            <div class="item-header">
+                                <div>
+                                    <div class="item-title">Experience Sampling</div>
+                                    <div class="item-subtitle">Collaborators: Dr. Diana Omigie (supervision)</div>
+                                </div>
+                            </div>
+                            <div class="item-description">
+                                I developed an online paradigm based on the What-Where-When paradigm to investigate the effects of music on episodic memory encoding. The study was conducted using PsychoPy and hosted online. In two experiments we explored the effects of emotional music, aesthetic response and liking on encoding of spatio temporal information.
+                            </div>
+                            <div class="tags">
+                                <span class="tag">Experience Sampling</span>
+                                <span class="tag">Episodic Autobiographical Memory</span>
+                                <span class="tag">EEG</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="project-item">
+                            <img src="images/VR.jpeg" alt="Project 3 screenshot" class="carousel-image" />
+                            <div class="item-header">
+                                <div>
+                                    <div class="item-title">Social Experiences in the Gallery at Manchester Art Gallery</div>
+                                    <div class="item-subtitle">Collaborators: Dr. Aleksandra Igdalova (lead researcher), Dr. Rebecca Chamberlain (supervision)</div>
+                                </div>
+                            </div>
+                            <div class="item-description">
+                                I developed an online paradigm based on the What-Where-When paradigm to investigate the effects of music on episodic memory encoding. The study was conducted using PsychoPy and hosted online. In two experiments we explored the effects of emotional music, aesthetic response and liking on encoding of spatio temporal information.
+                            </div>
+                            <div class="tags">
+                                <span class="tag">Museum Studies</span>
+                                <span class="tag">Art and Wellbeing</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="item-description">
-                    Summary of this project, your contribution, and the results or deliverables. Link to relevant resources if available.
+                <div class="carousel-nav">
+                    <button class="carousel-button prev" type="button" aria-label="Previous project">‹</button>
+                    <button class="carousel-button next" type="button" aria-label="Next project">›</button>
                 </div>
-                <div class="tags">
-                    <span class="tag">Relevant Tag</span>
-                    <span class="tag">Another Tag</span>
-                </div>
+                <div class="carousel-counter">1 / 3</div>
             </div>
         </section>
     </div>
@@ -246,5 +461,32 @@
     <footer>
         <p>&copy; 2026 Safiyyah Nawaz. All rights reserved.</p>
     </footer>
+    <script>
+        (function() {
+            const track = document.querySelector('.carousel-track');
+            const slides = document.querySelectorAll('.carousel-slide');
+            const prevButton = document.querySelector('.carousel-button.prev');
+            const nextButton = document.querySelector('.carousel-button.next');
+            const counter = document.querySelector('.carousel-counter');
+            let currentIndex = 0;
+
+            function updateCarousel() {
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                counter.textContent = `${currentIndex + 1} / ${slides.length}`;
+            }
+
+            prevButton.addEventListener('click', function() {
+                currentIndex = currentIndex > 0 ? currentIndex - 1 : slides.length - 1;
+                updateCarousel();
+            });
+
+            nextButton.addEventListener('click', function() {
+                currentIndex = currentIndex < slides.length - 1 ? currentIndex + 1 : 0;
+                updateCarousel();
+            });
+
+            updateCarousel();
+        })();
+    </script>
 </body>
 </html>
