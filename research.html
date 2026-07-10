@@ -72,22 +72,59 @@
         }
 
         nav {
-            background: black;
-            padding: 1.5rem 0rem;
-            max-height: 5rem;
+            background: #000000e6;
+            padding: 1.25rem 1rem;
             box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
             position: sticky;
             top: 0rem;
             z-index: 150;
             display: flex;
             flex-direction: row;
-            justify-content: flex-end;
+            justify-content: space-between;
             align-items: center;
         }
 
+        /* Mobile burger toggle */
+        .nav-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            padding: 0.25rem;
+        }
+
+        .nav-toggle .hamburger,
+        .nav-toggle .hamburger::before,
+        .nav-toggle .hamburger::after {
+            display: block;
+            background: var(--neon-highlight1);
+            height: 2px;
+            width: 22px;
+            border-radius: 2px;
+            position: relative;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+
+        .nav-toggle .hamburger::before,
+        .nav-toggle .hamburger::after {
+            content: "";
+            position: absolute;
+            left: 0;
+        }
+
+        .nav-toggle .hamburger::before { top: -7px; }
+        .nav-toggle .hamburger::after { top: 7px; }
+
+        .nav-toggle[aria-expanded="true"] .hamburger { background: transparent; }
+        .nav-toggle[aria-expanded="true"] .hamburger::before { transform: translateY(7px) rotate(45deg); }
+        .nav-toggle[aria-expanded="true"] .hamburger::after { transform: translateY(-7px) rotate(-45deg); }
+
         .logo {
             padding:0rem 0rem 0rem 0rem;
-            transform: rotate(180deg);
             width: 100%;
             max-width: 90%;
             justify-content: flex-start;
@@ -105,16 +142,16 @@
             list-style: none;
             font-size: 1.1rem;
             display: flex;
-            justify-content: flex-end;
-            gap: 3rem;
-            width: 100%;
-            max-width: 90%;
+            gap: 2rem;
             margin: 0;
-            padding: 3rem;
+            padding: 0.5rem 1rem;
+            margin-left: auto;
+            align-items: center;
+            color: white;
         }
 
         nav a {
-            color: var(--white);
+            color: var(--black);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
@@ -549,17 +586,63 @@
 
         @media (max-width: 768px) {
             nav ul {
-                gap: 1rem;
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 900px){
+            nav {
+                padding: 0.5rem 1rem;
+            }
+
+            nav ul {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background: #ffffff;
+                width: 90%;
+                max-width: 320px;
+                box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+                flex-direction: column;
+                gap: 0;
+                transform-origin: top right;
+                display: none;
+                margin: 0;
+                padding: 0.5rem 1rem;
+                border-radius: 8px;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            nav li {
+                padding: 0.5rem 0;
+            }
+
+            .nav-toggle {
+                display: inline-flex;
+                margin-right: 0;
+            }
+
+            nav ul {
+                width: calc(100% - 2rem);
+                max-width: 360px;
             }
         }
     </style>
 </head>
 <body>
-   <nav>
+ <nav>
         <div class="logo">
-            <img src="images/half_circle.png" style="width: 3rem; height: 3rem; filter: invert(1)">
+            <img src="images/half_circle.png" style="width: 3rem; height: 3rem; filter:invert(1)">
         </div>
-        <ul>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
+            <span class="hamburger"></span>
+        </button>
+        <ul id="main-nav">
             <li><a href="index.html"><i>Home</i></a></li>
             <li><a href="research.html"><i>Research</i></a></li>
             <li><a href="publications.html"><i>Publications</i></a></li>
@@ -925,9 +1008,57 @@ if (sketchContainer) {
         content.style.display = "block";
         }
     });
-    } 
+    }     
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Mobile nav toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const mainNav = document.getElementById('main-nav');
 
-    
+        if (navToggle && mainNav) {
+            navToggle.addEventListener('click', () => {
+                const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+                navToggle.setAttribute('aria-expanded', String(!expanded));
+                mainNav.classList.toggle('show');
+            });
+
+            // Close nav when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!navToggle.contains(e.target) && !mainNav.contains(e.target)) {
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    mainNav.classList.remove('show');
+                }
+            });
+        }
+        document.querySelectorAll('nav a').forEach((link) => {
+            link.addEventListener('mouseenter', () => {
+                const highlightVars = ['--neon-highlight1', '--neon-highlight2', '--neon-highlight3'];
+                const chosenVar = highlightVars[Math.floor(Math.random() * highlightVars.length)];
+                link.style.setProperty('--nav-hover-color', `var(${chosenVar})`);
+                link.style.setProperty('--nav-hover-border-color', `var(${chosenVar})`);
+            });
+
+            link.addEventListener('mouseleave', () => {
+                link.style.removeProperty('--nav-hover-color');
+                link.style.removeProperty('--nav-hover-border-color');
+            });
+        });
+
+        document.querySelectorAll('.tag').forEach((link) => {
+            link.addEventListener('mouseenter', () => {
+                const highlightVars = ['--neon-highlight1', '--neon-highlight2', '--neon-highlight3','--neon-highlight4'];
+                const chosenVar = highlightVars[Math.floor(Math.random() * highlightVars.length)];
+                link.style.setProperty('--nav-hover-color', `var(${chosenVar})`);
+                link.style.setProperty('--nav-hover-border-color', `var(${chosenVar})`);
+            });
+
+            link.addEventListener('mouseleave', () => {
+                link.style.removeProperty('--nav-hover-color');
+                link.style.removeProperty('--nav-hover-border-color');
+            });
+        });
+    });
 </script>
 </body>
 </html>
