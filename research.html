@@ -147,11 +147,11 @@
             padding: 0.5rem 1rem;
             margin-left: auto;
             align-items: center;
-            color: white;
+            
         }
 
         nav a {
-            color: var(--black);
+            color: white;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
@@ -562,6 +562,24 @@
             .carousel-slide {
                 padding: 0.6rem 0.7rem 0.8rem;
             }
+
+            .carousel-shell {
+                width: 100%;
+                max-width: 100%;
+                margin: 0.75rem auto 1rem;
+            }
+
+            .project-content {
+                padding: 0.4rem 0.1rem 0.1rem;
+            }
+
+            .carousel-button.prev {
+                left: 0.5rem;
+            }
+
+            .carousel-button.next {
+                right: 0.5rem;
+            }
         }
 
         footer {
@@ -601,7 +619,7 @@
                 position: absolute;
                 top: 100%;
                 right: 0;
-                background: #ffffff;
+                background: #000000;
                 width: 90%;
                 max-width: 320px;
                 box-shadow: 0 12px 40px rgba(0,0,0,0.12);
@@ -610,12 +628,22 @@
                 transform-origin: top right;
                 display: none;
                 margin: 0;
-                padding: 0.5rem 1rem;
+                padding: 0.75rem 1rem;
                 border-radius: 8px;
             }
 
             nav ul.show {
                 display: flex;
+            }
+
+            nav ul a {
+                color: #ffffff;
+                font-size: 1.1rem;
+                line-height: 1.5;
+            }
+
+            nav ul a:hover {
+                color: var(--neon-highlight3);
             }
 
             nav li {
