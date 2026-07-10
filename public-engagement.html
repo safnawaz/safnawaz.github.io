@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Public Engagement — Safiyyah Nawaz</title>
+    <title>Public Engagement</title>
     <style>
-        * {
+         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            
         }
 
         :root {
@@ -18,48 +19,133 @@
             --text-color: #333333;
             --light-bg: #f8f9fa;
             --border-color: #e0e0e0;
+            --background-color: #ffffff;
             --white: #ffffff;
+            --neon-highlight1: #f33cea;
+            --neon-highlight2: #2cfa3a;
+            --neon-highlight3: #58f0f8;
+            --neon-highlight4: #ff9a1f;
         }
 
         body {
             font-family: "Kantumruy Pro", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
             line-height: 1.45;
-            color: var(--text-color);
-            background-color: var(--white);
+            color: white;
+            background-color: black;
+            
         }
 
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 200;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: var(--white);
-            padding: 2rem 1rem;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        a {
+            color: var(--neon-highlight1);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--neon-highlight3);
+        }
+
+        .kantumruy-pro {
+            font-family: "Kantumruy Pro", sans-serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+            font-weight: 400;
+        }
+
+        .doodles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background-image: url("images/half_circle.png");
+            background-origin:border-box;
+            background-size: 50px 50px;
+            background-repeat: no-repeat;
+            object-fit: cover;
+            padding: 25px 25px;
         }
 
         nav {
-            background: var(--white);
-            padding: 1rem 1rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            background: #000000e6;
+            padding: 1.25rem 1rem;
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
             position: sticky;
-            top: 8rem;
+            top: 0rem;
             z-index: 150;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Mobile burger toggle */
+        .nav-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            padding: 0.25rem;
+        }
+
+        .nav-toggle .hamburger,
+        .nav-toggle .hamburger::before,
+        .nav-toggle .hamburger::after {
+            display: block;
+            background: var(--neon-highlight1);
+            height: 2px;
+            width: 22px;
+            border-radius: 2px;
+            position: relative;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+
+        .nav-toggle .hamburger::before,
+        .nav-toggle .hamburger::after {
+            content: "";
+            position: absolute;
+            left: 0;
+        }
+
+        .nav-toggle .hamburger::before { top: -7px; }
+        .nav-toggle .hamburger::after { top: 7px; }
+
+        .nav-toggle[aria-expanded="true"] .hamburger { background: transparent; }
+        .nav-toggle[aria-expanded="true"] .hamburger::before { transform: translateY(7px) rotate(45deg); }
+        .nav-toggle[aria-expanded="true"] .hamburger::after { transform: translateY(-7px) rotate(-45deg); }
+
+        .logo {
+            padding:0rem 0rem 0rem 0rem;
+            width: 100%;
+            max-width: 90%;
+            justify-content: flex-start;
+            object-fit: contain;
+            width: 3rem;
+            height: 3rem;
+        }
+
+        .logo:hover {
+            rotate: 360deg;
+            transition: rotate 1s ease-in-out;
         }
 
         nav ul {
             list-style: none;
+            font-size: 1.1rem;
             display: flex;
-            justify-content: center;
             gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            flex-wrap: wrap;
+            margin: 0;
+            padding: 0.5rem 1rem;
+            margin-left: auto;
+            align-items: center;
         }
 
         nav a {
-            color: var(--primary-color);
+            color: var(--black);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
@@ -67,19 +153,56 @@
             padding-bottom: 0.25rem;
         }
 
-        nav a:hover,
-        nav a.active {
-            color: var(--accent-color);
-            border-bottom-color: var(--accent-color);
+        nav a:hover {
+            color: var(--nav-hover-color, var(--neon-highlight1));
+            border-bottom-color: var(--nav-hover-border-color, var(--neon-highlight1));
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 85%;
             margin: 0 auto;
             padding: 0 1rem;
+            justify-content: center;
+        }
+
+        .public-engagement-item {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            gap: 1.5rem;
+        }
+
+        .public-engagement-item img,
+        .public-engagement-item video {
+            object-fit: cover;
+            border-radius: 50%;
+            max-width: 300px;
+            width: 100%;
+            max-height: 300px;
+            border: 5px double var(--neon-highlight1);
+            align-items: center;
+        }
+
+        .public-engagement-item img:hover, .public-engagement-item video:hover {           
+            /* transition-duration: 4s; */
+            animation-name: colorChange;
+            animation-duration: 2s;
+        }
+
+        .public-engagement-item video {
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px double var(--neon-highlight3);
+        }
+
+        .public-engagement-text {
+            padding: 0.5rem 1.5rem;
+            text-align: justify;
+            font-size: 1.2;
         }
 
         section {
+            display: flex;
             padding: 4rem 0;
             border-bottom: 1px solid var(--border-color);
         }
@@ -108,6 +231,17 @@
             border-bottom: none;
             padding-bottom: 0;
             margin-bottom: 0;
+        }
+
+        .emphasised {
+            font-style: italic;
+        }
+
+        .emphasised:hover {
+           color: var(--neon-highlight2);
+           text-decoration:  underline;
+           /* animation-delay: 1s; */
+           
         }
 
         .item-header {
@@ -144,31 +278,335 @@
 
         .tags {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            padding: 2rem 2rem;
         }
 
         .tag {
-            background: var(--light-bg);
-            color: var(--primary-color);
+            background: white;
+            color: black;
+            padding: 0.2rem 0.65rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 2px solid white;
+        }
+
+        .tag:hover {
+            background: var(--nav-hover-color, var(--neon-highlight2));
+            color: #000000;
+        }
+
+        .tag-sub {
+            background: #525252;
+            color: var(--white);
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
-            font-size: 0.85rem;
-            border: 1px solid var(--border-color);
+            font-size: 1rem;
+            border: 2px solid #000000;
+        }
+
+        .tag-sub:hover {
+            background: var(--nav-hover-color, var(--neon-highlight1));
+        }
+
+        .nowrap-inline {
+            white-space: nowrap;
+        }
+
+        .nowrap-inline a {
+            color: var(--neon-highlight1);
+            text-decoration: underline;
+        }
+
+        .tooltip {
+            position: relative;
+            cursor: pointer;
+            text-decoration: underline solid #2cfa3a;            
+            display: inline-block;
+            vertical-align: baseline;
+        }
+
+        .tooltip .tooltip-content {
+            color: black;
+            background-color: rgba(255, 255, 255, 0.85);
+            font-size: 0.9rem;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 120%;
+            padding: 8px;
+            border-radius: 8px;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 1000px;
+        }
+
+        .tooltip:hover .tooltip-content,
+        .tooltip:focus .tooltip-content {
+            display: block;
+        }
+
+        .publications-canvas-wrap {
+            margin-top: 1rem;
+            background: black;
+            padding: 0rem;
+            width: 100%;
+            min-width: unset;
+        }
+
+        #publications-canvas {
+            width: 100%;
+            height: 5%;
+            display: block;
+            border-radius: 0px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .resources {
+            display: flex;
+            flex-direction: row;
+            font-style: italic;
+            justify-content: center;
+        }
+
+        .resource-item {
+            padding: 3rem;
+        }
+
+        .resource-item h2 {
+            justify-content: center;
+            text-align: center;
+        }
+
+        .resource-list {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(140px, 1fr));
+            gap: 1rem;
+            align-items: stretch;
+            margin-top: 1rem;
+        }
+
+        .resource-button {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            min-height: 140px;
+            padding: 1rem;
+            border-radius: 50%;
+            border: 3px solid white;
+            background-color: #111;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+            color: white;
+            font-size: 0.95rem;
+            font-style: italic;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+        }
+
+        .resource-button::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            pointer-events: none;
+            border-radius: 50%;
+        }
+
+        .resource-button span {
+            position: relative;
+            z-index: 1;
+            color: white;
+            display: block;
+            width: 100%;
+            line-height: 1.2;
+        }
+
+        .resource-button:hover {
+            transform: translateY(-3px);
+            border-color: var(--neon-highlight2);
+        }
+
+        @media (max-width: 1200px) {
+            .resource-list {
+                grid-template-columns: repeat(3, minmax(140px, 1fr));
+            }
+        }
+
+        @media (max-width: 900px) {
+            .resource-list {
+                grid-template-columns: repeat(2, minmax(140px, 1fr));
+            }
+
+            nav {
+                padding: 0.5rem 1rem;
+            }
+
+            nav ul {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background: #ffffff;
+                width: 90%;
+                max-width: 320px;
+                box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+                flex-direction: column;
+                gap: 0;
+                transform-origin: top right;
+                display: none;
+                margin: 0;
+                padding: 0.5rem 1rem;
+                border-radius: 8px;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            nav li {
+                padding: 0.5rem 0;
+            }
+
+            .nav-toggle {
+                display: inline-flex;
+                margin-right: 0;
+            }
+
+            nav ul {
+                width: calc(100% - 2rem);
+                max-width: 360px;
+            }
+        }
+
+        @media (max-width: 768px){
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .resource-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+
+        .skills-grid {
+            padding: 1rem;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.5rem;
+            align-items: stretch;
+        }
+
+        .skill-category1,
+        .skill-category2,
+        .skill-category3,
+        .skill-category4 {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: black;
+            padding: 1.5rem;
+            border-radius: 0;
+            font-size: 1.25rem;
+        }
+
+        .skill-category1 p,
+        .skill-category2 p,
+        .skill-category3 p,
+        .skill-category4 p {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: black;
+            padding: 1.5rem;
+            border-radius: 0;
+            font-size: 0.9rem;
+            color: white;
+        }
+
+        .skill-category1 {
+            border-left: 14px solid var(--neon-highlight1);
+            color: var(--neon-highlight1);
+        }
+
+        .skill-category2 {
+            border-left: 14px solid var(--neon-highlight2);
+            color: var(--neon-highlight2);
+        }
+
+        .skill-category3 {
+            border-left: 14px solid var(--neon-highlight3);
+            color: var(--neon-highlight3);
+        }
+
+        .collapsible {
+            background-color: var(--neon-highlight2);
+            cursor: pointer;
+            padding: 0.5rem;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: black;
+        }
+
+        /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+        .active,
+        .collapsible:hover {
+            background-color: var(--neon-highlight1);
+        }
+
+        /* Style the collapsible content. Note: hidden by default */
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f1f1f1;
+        }
+
+        .collapsible:after {
+            content: '\02795'; /* Unicode character for "plus" sign (+) */
+            font-size: 15px;
+            padding-top: 0.2rem;
+            color: white;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .active:after {
+            content: "\2796"; /* Unicode character for "minus" sign (-) */
         }
 
         footer {
-            background: var(--primary-color);
-            color: var(--white);
-            padding: 2rem;
+            background: var(--neon-highlight3);
+            color: black;
+            padding: 1rem;
             text-align: center;
             margin-top: 3rem;
             font-size: 0.95rem;
         }
 
         footer a {
-            color: var(--white);
+            color: var(--black);
             text-decoration: none;
             margin: 0 0.5rem;
             transition: opacity 0.3s;
@@ -178,88 +616,371 @@
             opacity: 0.8;
         }
 
+        @keyframes colorChange {
+            from {
+                border-color: #2cfa3a;
+            }
+            to {
+                border-color: #58f0f8;
+            }
+        }
+
+        @keyframes swingAnimation {
+            0% {
+                transform: rotate(0deg);
+            }
+            20% {
+                transform: rotate(15deg);
+            }
+            40% {
+                transform: rotate(-10deg);
+            }
+            60% {
+                transform: rotate(5deg);
+            }
+            80% {
+                transform: rotate(-5deg);
+            }
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        @keyframes textColorChange {
+            from {
+                text-decoration-color: #ffffff;
+            }
+            to {
+                text-decoration-color: #58f0f8;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .public-engagement-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .public-engagement-text {
+                padding: 0.75rem 0;
+                font-size: 1rem;
+            }
+
+            .public-engagement-item img,
+            .public-engagement-item video {
+                max-width: 260px;
+                max-height: 260px;
+            }
+
+            .container {
+                max-width: 100%;
+            }
+        }
+
         @media (max-width: 768px) {
             nav ul {
-                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.75rem;
+                font-size: 0.95rem;
+            }
+
+            .public-engagement-item {
+                padding: 1rem;
+            }
+
+            .public-engagement-text {
+                padding: 0.5rem 0;
+                font-size: 0.95rem;
+            }
+
+            .resource-button {
+                min-height: 120px;
+                font-size: 0.9rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .public-engagement-item img,
+            .public-engagement-item video {
+                max-width: 220px;
+                max-height: 220px;
+            }
+
+            .resource-button {
+                min-height: 130px;
+                font-size: 0.85rem;
+            }
+
+            nav ul {
+                gap: 0.5rem;
+                font-size: 0.85rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Safiyyah Nawaz, PhD</h1>
-        <div class="contact-info">
-            <a href="mailto:nawazsafiyyah@gmail.com">Email</a> •
-            <a href="https://www.linkedin.com/in/safiyyahnawaz/" target="_blank">LinkedIn</a> •
-            <a href="https://orcid.org/0009-0007-7324-0039" target="_blank">ORCID</a>
+    <!-- <nav>
+        <div class="logo">
+            <img src="images/half_circle.png" style="width: 3rem; height: 3rem; filter: invert(1)">
         </div>
-    </header>
+        <ul>
+            <li><a href="index.html"><i>Home</i></a></li>
+            <li><a href="research.html"><i>Research</i></a></li>
+            <li><a href="publications.html"><i>Publications</i></a></li>
+            <li><a href="public-engagement.html"><i>Public Engagement</i></a></li>
+            <li><a href="portfolio.html"><i>Portfolio</i></a></li>
+        </ul>
+    </nav> -->
 
     <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="publications.html">Publications</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="public-engagement.html" class="active">Public Engagement</a></li>
+        <div class="logo">
+            <img src="images/half_circle.png" style="width: 3rem; height: 3rem; filter:invert(1)">
+        </div>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
+            <span class="hamburger"></span>
+        </button>
+        <ul id="main-nav">
+            <li><a href="index.html"><i>Home</i></a></li>
+            <li><a href="research.html"><i>Research</i></a></li>
+            <li><a href="publications.html"><i>Publications</i></a></li>
+            <li><a href="public-engagement.html"><i>Public Engagement</i></a></li>
+            <!-- <li><a href="portfolio.html"><i>Portfolio</i></a></li> -->
         </ul>
     </nav>
 
     <div class="container">
-        <section>
-            <h2>Public Engagement & Creative Pursuits</h2>
-            <div class="engagement-item">
-                <div class="item-header">
-                    <div>
-                        <div class="item-title">Public Speaking / Talks</div>
-                        <div class="item-subtitle">Conference, Festival, or Institution</div>
-                    </div>
-                    <div class="item-date">2024</div>
+        <div class="public-engagement-item">
+            <img src="images/houghton.JPG" >
+            <div class="public-engagement-text">
+            <p> As a researcher I often find myself reflecting on the legacy of my work: <span class="emphasised">What is my responsibility for the knowledge I produce?</span><span class="emphasised"> Where will the outputs of my research end up?</span> <span class="emphasised"> <i>Who will be able to access and engage with it, and to what end?</i></span> These questions motivate me to keep the inclusivity, accessibility, and impact of my research at the front of my mind and practice. </p>
+            <br>
+            <p> I believe that us researchers must make an effort to advance our work beyond the laboratories, the elite institutions and the academic conventions that our work is often made to <span class="tooltip">live <span class="tooltip-content">and also often die</span></span> in. <span class="emphasised">Why pursue knowledge if it cannot be distributed among the masses?</span> Such musings have led me to incorporate approaches including open science and decolonial analysis into my practice. They've also pushed me to participate in public engagement efforts, from speaking about the science of music and art at music festivals including <a href="https://www.houghtonfestival.co.uk/" target="_blank">Houghton</a> (2024) and <a href="https://lostvillagefestival.com/" target="_blank">Lost Village</a> (2022) to volunteering in music-based care activities for local residents of East London living with dementia at <a href="https://www.stjh.org.uk/volunteer/volunteer-opportunities/" target="_blank">St. Joseph's Hospice</a>. Experiences with music outside of the lab, especially those which are grounded in community, care and shared experience, have fundamentally shaped my perspective on the work I do.
+        </div>        
+        </div>
+        <div class="public-engagement-item">
+            <div class="public-engagement-text">
+                  <p> Throughout my years studying music and autobiographical memory, I noticed that nearly all of the research about music and memory focuses on <span class="tooltip"> Western populations and Western musical genres.<span class = "tooltip-content">Often referred to as the "WEIRD" problem: samples are largely Western, Educated, Industrialised, Rich and Democratic</span> </span> This is a massive problem as it limits the scientific community's ability to draw conclusions about music's relationship with memory for <span class="tooltip">populations that aren't Western<span class="tooltip-content"> which happens to be the majority of the world!</span> </span>. It also reinforces <i>epistemic exclusion</i>, the silencing and displacement of local/indigenous knowledge - for example, knowledge which is embedded in cultural traditions like music - and <i>epistemological violence</i>, which constructs the "Other" (in this case, non-Western populations) as non-representative or general exceptions to a rule.   </p>
+                <br>
+                <p> This is a trend throughout research in music psychology, and in psychological and scientific disciplines more broadly. So, from my position, I wanted to attempt to move some of the research into a more equitable and representative direction. This led to the conception of <a href="https://memoryrecords.xyz/" target="_blank">Memory Records</a>, a citizen science public engagement project designed to promote global, active participation in music-memory research.  </p>
+                
                 </div>
-                <div class="item-description">
-                    Description of speaking events, invited talks, workshops, or public-facing presentations. Highlight themes, audiences, and impact.
+            <a href="https://memoryrecords.xyz/" target="_blank">
+                <video width="300" height="300" autoplay loop>
+                    <source src="videos/mr_animation.mp4" type="video/mp4">
+                </video>
+            </a>
+        </div>
+         <div class="public-engagement-item">
+            <img src="images/sofar.jpeg" style="border-radius: 0;">
+            <div class="public-engagement-text">
+                  <p> Currently populated with data from my <a href="https://www.gold.ac.uk/news/2025/music-and-memories-/" target="_blank">first PhD study</a> which samples memories participants have associated with specific songs from their <span class="tooltip">reminiscence bumps<span class="tooltip-content">the years of childhood to early adulthood, where we tend to concentrate memories and music preferences</span></span> and beyond, Memory Records establishes the first living musical memory archive of its kind. You can already have a look and sort through some of the memories there, see the patterns, and begin to think about how music has shaped your own life story. With friends and collaborators I am working towards making this an active open data collection tool and a meaningful archive, with the aim to encourage participation globally, so that we can better understand music's role in memory across cultures and traditions. All you'll need to be a part of this is an internet connection and 5 minutes MAX of your time. Sign up <a href="https://docs.google.com/forms/d/e/1FAIpQLSdE3318DKaKCWXTCy2t7D9E9JMymXxVWvw6ylrII_NEHdEe1A/viewform" target="_blank">here</a> to be notified when the full site is live; I look forward to reading your memories there in the near future...</p>
+                <br>
+                <p>If you have any questions, my door is open for collaborations, partnerships, consulting opportunities and speaking engagements. I am an experienced <span class="tooltip">public speaker<span class="tooltip-content">and yapper, if you get me started</span></span>, with 20+ concerts that I've MC'd, multiple international conference presentations, and even a <span class="tooltip">wedding<span class="tooltip-content">Not a joke! I officiated my brother's wedding in 2023. It was amazing.</span> </span> under the belt. <a href="mailto:nawazsafiyyah@proton.me" target="_blank">Get in touch!</a></p>
                 </div>
-                <div class="tags">
-                    <span class="tag">Public Speaking</span>
-                    <span class="tag">Outreach</span>
-                </div>
-            </div>
-            <div class="engagement-item">
-                <div class="item-header">
-                    <div>
-                        <div class="item-title">Creative Practice</div>
-                        <div class="item-subtitle">Music Production / Illustration / Design</div>
-                    </div>
-                    <div class="item-date">2023 – Present</div>
-                </div>
-                <div class="item-description">
-                    Description of creative and non-academic activities such as music production, illustration, DJ work, jewellery making, or graphic design.
-                </div>
-                <div class="tags">
-                    <span class="tag">Creative Work</span>
-                    <span class="tag">Public Engagement</span>
-                </div>
-            </div>
-            <div class="engagement-item">
-                <div class="item-header">
-                    <div>
-                        <div class="item-title">Non-Academic Experience</div>
-                        <div class="item-subtitle">Community Projects / Outreach</div>
-                    </div>
-                    <div class="item-date">2022 – Present</div>
-                </div>
-                <div class="item-description">
-                    Description of non-academic work, collaborations, or volunteer roles that support your research or creative mission.
-                </div>
-                <div class="tags">
-                    <span class="tag">Community</span>
-                    <span class="tag">Engagement</span>
-                </div>
-            </div>
-        </section>
+        </div>
+        <div class="tags">
+            <span class="tag">Public Speaking</span>
+            <span class="tag">Open Science </span>
+            <span class="tag">Decolonial Analysis</span>
+            <span class="tag">Citizen Science</span>
+        </div>
     </div>
+    
+        <div class="publications-canvas-wrap">
+            <div id="publications-canvas" aria-label="p5.js canvas placeholder"></div>
+        </div>
+
+        <div class="skills-grid">
+                <div class="skill-category1">
+                    <h3><i>Repositories</i></h3>
+                    <p> Below are repositories for (1) a dataset of music-evoked autobiographical memories and the associated auditory features of the memory evoking music and (2) Unity resources for the virtual reality music-supported episodic memory encoding paradigm developed for my PhD research by <span class="nowrap-inline">colleague <a href="https://www.mianzi-lizi.com/ju-goldsmiths-work" target="_blank" style="text-decoration: none;">Ju Zhang</a> from Goldsmiths' <a href="https://www.seevrlab.com/" target="_blank" style="text-decoration: none;">SEE-VR LAB.</a></span></p>
+                    <div class="resource-list">
+                        <a class="resource-button" href="https://osf.io/jke9w/overview" target="_blank"><span>Music-evoked autobiographical memories</span></a>
+                        <a class="resource-button" href="https://github.com/ju-xr/Safiyyah-project" target="_blank"><span>Episodic memory VR paradigm</span></a>
+                    </div>
+                </div>
+                <div class="skill-category2">
+                    <h3><i>Presentations</i></h3>
+                    <p> Below you can view some of the oral and poster presentations I've delivered about Memory Records and doctoral research using virtual reality, experience sampling and survey studies. </p>
+                    <div class="resource-list">
+                        <a class="resource-button" href="https://www.canva.com/design/DAHEX7FGd0U/VtaW7kRHDUyOk0P9EDafeQ/view?utm_content=DAHEX7FGd0U&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h4abe58d7b1" target="_blank" style="background-image: url('images/pres_sempre.png');"><span>Musical memories in everyday life (Sempre 2026)</span></a>
+                        <a class="resource-button" href="https://www.canva.com/design/DAG51fH-cBQ/OY7Y2ievcJ4Y-0FT5SDouA/view?utm_content=DAG51fH-cBQ&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h8a5d4a89f5" target="_blank" style="background-image: url('images/pres_dmrn.png');"><span>Memory Records (DMRN 20+, 2025)</span></a>                        
+                        <a class="resource-button" href="https://www.canva.com/design/DAGxFQ5GjUI/9s_kXqAd-VcE6ixWsVnC5Q/view?utm_content=DAGxFQ5GjUI&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h1ee2916c81" target="_blank" style="background-image: url('images/pres_exeter.png');"><span>Music-supported encoding in VR (Exeter, 2025)</span></a>
+                        <a class="resource-button" href="https://www.canva.com/design/DAGD_tlq1d4/g4iwarM364OVx67DY3hHpg/view?utm_content=DAGD_tlq1d4&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h785eb9b2f1" target="_blank" style="background-image: url('images/pres_iaea.png');"><span>Features of MEAMs (ESCOM 2024; IAEA, 2024)</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    
 
     <footer>
         <p>&copy; 2026 Safiyyah Nawaz. All rights reserved.</p>
     </footer>
+<script>
+   document.addEventListener('DOMContentLoaded', () => {
+        // Mobile nav toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const mainNav = document.getElementById('main-nav');
+
+        if (navToggle && mainNav) {
+            navToggle.addEventListener('click', () => {
+                const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+                navToggle.setAttribute('aria-expanded', String(!expanded));
+                mainNav.classList.toggle('show');
+            });
+
+            // Close nav when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!navToggle.contains(e.target) && !mainNav.contains(e.target)) {
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    mainNav.classList.remove('show');
+                }
+            });
+        }
+        document.querySelectorAll('nav a').forEach((link) => {
+            link.addEventListener('mouseenter', () => {
+                const highlightVars = ['--neon-highlight1', '--neon-highlight2', '--neon-highlight3'];
+                const chosenVar = highlightVars[Math.floor(Math.random() * highlightVars.length)];
+                link.style.setProperty('--nav-hover-color', `var(${chosenVar})`);
+                link.style.setProperty('--nav-hover-border-color', `var(${chosenVar})`);
+            });
+
+            link.addEventListener('mouseleave', () => {
+                link.style.removeProperty('--nav-hover-color');
+                link.style.removeProperty('--nav-hover-border-color');
+            });
+        });
+
+        document.querySelectorAll('.tag').forEach((link) => {
+            link.addEventListener('mouseenter', () => {
+                const highlightVars = ['--neon-highlight1', '--neon-highlight2', '--neon-highlight3','--neon-highlight4'];
+                const chosenVar = highlightVars[Math.floor(Math.random() * highlightVars.length)];
+                link.style.setProperty('--nav-hover-color', `var(${chosenVar})`);
+                link.style.setProperty('--nav-hover-border-color', `var(${chosenVar})`);
+            });
+
+            link.addEventListener('mouseleave', () => {
+                link.style.removeProperty('--nav-hover-color');
+                link.style.removeProperty('--nav-hover-border-color');
+            });
+        });
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+<script>
+const sketchContainer = document.getElementById('publications-canvas');
+
+if (sketchContainer) {
+    new p5((p) => {
+        let numCircles = 10;
+        let circles = [];
+        let neonColors = [p.color('#f33cea'), p.color('#2cfa3a'), p.color('#58f0f8')];
+
+        class Circle {
+            constructor(x,y,radius,color){
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+                this.color = color;
+            }
+
+            show() {
+                
+                
+                p.fill(this.color);
+                p.noStroke();;
+                p.ellipse(this.x, this.y, this.radius, this.radius);
+            }
+
+            move(){
+                if(this.x > p.width + this.radius){
+                    this.x = -this.radius;
+                    this.y = p.random(p.height);
+                }
+                
+                this.x += p.random(1,3);
+            }
+        }
+        p.setup = () => {
+            p.createCanvas(sketchContainer.clientWidth, sketchContainer.clientHeight);
+            for(let i =0;i <numCircles; i ++){
+                let circle = new Circle(p.random(p.width),p.random(p.height),p.random(20,60),neonColors[Math.floor(p.random(neonColors.length))]);
+                circles.push(circle);
+            }
+           
+        };
+
+        let slide = 0;
+        let moveX = 0;
+        let pulse;
+        
+        p.draw = () => {
+            p.background(0);
+            let radius = 30;
+            let neonColor = neonColors[Math.floor(p.random(neonColors.length))];
+            p.fill(255);
+            p.ellipse(p.mouseX, p.mouseY, radius + pulse, radius + pulse);
+            
+
+            for(let i =0;i < circles.length; i++){
+                circles[i].show();  
+                circles[i].move();
+                
+            }
+
+            p.fill(255);
+            p.noStroke();
+            p.textSize(34);
+            p.textAlign(p.CENTER,p.CENTER);
+            
+            p.text("RESOURCES",p.width/2,p.height/2);
+        
+    
+            moveX += p.map(p.mouseX,0,p.width, -.5, .5);
+
+            pulse = p.sin(p.frameCount/20) * 50;
+            
+        };
+
+        p.mouseClicked =() => {
+            if (circles.length > 35){
+                circles.shift();
+            } else {
+                let clickCircle = new Circle(p.mouseX,p.mouseY,p.random(20,60),neonColors[Math.floor(p.random(neonColors.length))]);
+                circles.push(clickCircle);
+            }        
+        }
+        
+
+        p.windowResized = () => {
+            p.resizeCanvas(sketchContainer.clientWidth, sketchContainer.clientHeight);
+        };
+    }, sketchContainer);
+}
+</script>
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+        content.style.display = "none";
+        } else {
+        content.style.display = "block";
+        }
+    });
+    } 
+
+    
+</script>
 </body>
 </html>

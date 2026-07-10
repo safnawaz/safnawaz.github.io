@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Safiyyah Nawaz, PhD</title>
+    <title>Safiyyah Nawaz</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
@@ -12,6 +12,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            
         }
 
         :root {
@@ -21,14 +22,41 @@
             --text-color: #333333;
             --light-bg: #f8f9fa;
             --border-color: #e0e0e0;
+            --background-color: #ffffff;
             --white: #ffffff;
+            --neon-highlight1: #f33cea;
+            --neon-highlight2: #2cfa3a;
+            --neon-highlight3: #58f0f8;
+            --neon-highlight4: #ff9a1f;
         }
 
         body {
             font-family: "Kantumruy Pro", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
             line-height: 1.45;
             color: var(--text-color);
-            background-color: var(--white);
+            background-color: var(--background-color);   
+            overflow: auto;         
+        }
+
+        Hide scrollbar for Chrome, Safari and Opera
+        .example::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .example {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        a {
+            color: var(--neon-highlight1);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--neon-highlight3);
         }
 
         .kantumruy-pro {
@@ -38,67 +66,100 @@
             font-weight: 400;
         }
 
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 200;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: var(--white);
-            padding: 2rem 1rem;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            font-weight: 300;
-            margin-bottom: 0.5rem;
-            letter-spacing: 0.5px;
-        }
-
-        header .subtitle {
-            font-size: 1.2rem;
-            font-weight: 300;
-            opacity: 0.95;
-            margin-bottom: 1rem;
-        }
-
-        header .contact-info {
-            font-size: 0.95rem;
-            opacity: 0.9;
-        }
-
-        header .contact-info a {
-            color: var(--white);
-            text-decoration: none;
-            margin: 0 0.5rem;
-            transition: opacity 0.3s;
-        }
-
-        header .contact-info a:hover {
-            opacity: 0.8;
+        .doodles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background-image: url("images/half_circle.png");
+            background-origin:border-box;
+            background-size: 50px 50px;
+            background-repeat: no-repeat;
+            object-fit: cover;
+            padding: 25px 25px;
         }
 
         nav {
-            background: var(--white);
-            padding: 1rem 2rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            background: #ffffffe6;
+            padding: 1.25rem 1rem;
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
             position: sticky;
-            top: 8rem;
+            top: 0rem;
             z-index: 150;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Mobile burger toggle */
+        .nav-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            padding: 0.25rem;
+        }
+
+        .nav-toggle .hamburger,
+        .nav-toggle .hamburger::before,
+        .nav-toggle .hamburger::after {
+            display: block;
+            background: var(--neon-highlight1);
+            height: 2px;
+            width: 22px;
+            border-radius: 2px;
+            position: relative;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+
+        .nav-toggle .hamburger::before,
+        .nav-toggle .hamburger::after {
+            content: "";
+            position: absolute;
+            left: 0;
+        }
+
+        .nav-toggle .hamburger::before { top: -7px; }
+        .nav-toggle .hamburger::after { top: 7px; }
+
+        .nav-toggle[aria-expanded="true"] .hamburger { background: transparent; }
+        .nav-toggle[aria-expanded="true"] .hamburger::before { transform: translateY(7px) rotate(45deg); }
+        .nav-toggle[aria-expanded="true"] .hamburger::after { transform: translateY(-7px) rotate(-45deg); }
+
+        .logo {
+            padding:0rem 0rem 0rem 0rem;
+            width: 100%;
+            max-width: 90%;
+            justify-content: flex-start;
+            object-fit: contain;
+            width: 3rem;
+            height: 3rem;
+        }
+
+        .logo:hover {
+            rotate: 360deg;
+            transition: rotate 1s ease-in-out;
         }
 
         nav ul {
             list-style: none;
+            font-size: 1.1rem;
             display: flex;
-            justify-content: center;
             gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            margin: 0;
+            padding: 0.5rem 1rem;
+            margin-left: auto;
+            align-items: center;
         }
 
         nav a {
-            color: var(--primary-color);
+            color: var(--black);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
@@ -107,19 +168,19 @@
         }
 
         nav a:hover {
-            color: var(--accent-color);
-            border-bottom-color: var(--accent-color);
+            color: var(--nav-hover-color, var(--neon-highlight1));
+            border-bottom-color: var(--nav-hover-border-color, var(--neon-highlight1));
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 100%;
             margin: 0 auto;
             padding: 0 1rem;
         }
 
         section {
-            padding: 4rem 0;
-            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 5rem;
+            /* border-bottom: 1px solid var(--border-color); */
         }
 
         section:last-of-type {
@@ -139,29 +200,33 @@
         .about-section {
             display: flex;
             align-items: flex-start;
-            gap: 2rem;
-            flex-wrap: wrap;
+            gap: 5rem;
+            flex-wrap: wrap;   
         }
 
         .about-text {
             flex: 1;
             min-width: 280px;
+            
         }
 
         .about-profile {
             flex: 0 0 320px;
             min-width: 250px;
             display: flex;
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
+            gap: 0.9rem;
         }
 
         .profile-photo {
             width: 100%;
             max-width: 320px;
             aspect-ratio: 1 / 1;
-            border-radius: 18px;
-            background: #f2f2f2;
-            border: 1px dashed var(--border-color);
+            border-radius: 100px;
+            background: #000000;
+            border: 5px solid var(--neon-highlight1);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -169,16 +234,134 @@
             font-size: 0.95rem;
             padding: 1rem;
             text-align: center;
+            overflow: hidden;
+        }
+
+        .profile-photo:hover {
+            /* rotate: 360deg;
+            transition: rotate 2s ease-in-out; */
+            transform: rotateY(180deg);
+        }
+
+        .profile-caption {
+            width: 100%;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        .profile-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            width: 100%;            
+        }
+
+        .profile-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.35rem 0.6rem;
+            border: 2px solid var(--neon-highlight2);
+            border-radius: 999px;
+            background: var(--white);
+            color: var(--black);
+            font-size: 0.95rem;
+        }
+
+        .profile-links a img{
+            width: 1.1rem;
+            height: 1.1rem;
+            object-fit:contain;
+        }
+
+        .profile-links a:hover {
+            background: var(--neon-highlight2);
+        }
+
+        .profile-links .logo-placeholder {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            
+            width: 1.1rem;
+            height: 1.1rem;
+            font-size: 0.85rem;
+            border-radius: 50%;
+            background: transparent;
+            color: var(--black);
         }
 
         .about-content {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             line-height: 1.8;
             color: #555;
         }
 
+
+        .skill-category {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+
+        .technical h3 {
+            color: var(--neon-highlight1);
+        }
+
+        .skill-category ul {
+            padding-left: 1.1rem;
+            color: black;
+        }
+
+        .skill-category li {
+            margin-bottom: 0.5rem;
+        }
+
+        .skills-canvas-wrap {
+            margin-top: 1rem;
+            background: var(--white);
+            padding: 0rem;
+        }
+
+        #skills-canvas {
+            width: 100%;
+            height: 5%;
+            display: block;
+            border-radius: 0px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .news-canvas-wrap {
+            margin-top: 1rem;
+            background: var(--white);
+            padding: 0rem;
+        }
+
+        #news-canvas {
+            width: 100%;
+            height: 5%;
+            display: block;
+            border-radius: 0px;
+            overflow: hidden;
+            position: relative;
+        }
+
         .about-content p {
             margin-bottom: 1rem;
+        }
+
+        .divider {
+            width: 90%;
+            align-self: center;
+        }
+
+        .divider:hover {
+            rotate: 360deg;
+            transition: rotate 1s ease-in-out;
         }
 
         .education-item, .publication-item, .project-item {
@@ -239,58 +422,271 @@
         }
 
         .tag {
-            background: var(--light-bg);
-            color: var(--primary-color);
+            background: #000000;
+            color: var(--white);
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
-            font-size: 0.85rem;
-            border: 1px solid var(--border-color);
+            font-size: 1rem;
+            border: 2px solid #000000;
+        }
+
+        .tag:hover {
+            background: var(--nav-hover-color, var(--neon-highlight1));
+            color: #000000;
+        }
+
+        .tag-sub {
+            background: #525252;
+            color: var(--white);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 1rem;
+            border: 2px solid #000000;
+        }
+
+        .tag-sub:hover {
+            background: var(--nav-hover-color, var(--neon-highlight1));
         }
 
         .skills-grid {
+            padding: 1rem;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 1.5rem;
-            margin-top: 2rem;
+            align-items: stretch;
         }
 
-        .skill-category {
-            background: var(--light-bg);
+        .skill-category1,
+        .skill-category2,
+        .skill-category3,
+        .skill-category4 {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .skill-category1 {
+            background: var(--white);
             padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-color);
+            border-radius: 0px;
+            border-left: 14px solid var(--neon-highlight1);
+            color: var(--neon-highlight1);
+            font-size: 1.25rem;
         }
 
-        .skill-category h3 {
-            color: var(--primary-color);
-            margin-bottom: 0.75rem;
+        .skill-category2 {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 0px;
+            border-left: 14px solid var(--neon-highlight2);
+            color: var(--neon-highlight2);
+            font-size: 1.25rem;
+        }
+
+
+        .skill-category3 {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 0px;
+            border-left: 14px solid var(--neon-highlight3);
+            color: var(--neon-highlight3);
+            font-size: 1.25rem;
+        }
+
+        .skill-category4 {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 0px;
+            border-left: 14px solid var(--neon-highlight4);
+            color: var(--neon-highlight4);
+            font-size: 1.25rem;
+        }
+
+        .news-carousel {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .news-viewport {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .news-track {
+            display: flex;
+            transition: transform 0.35s ease;
+        }
+
+        .news-slide {
+            min-width: 100%;
+            padding: 0.25rem 0;
+        }
+
+        .news-slide-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .news-item {
+            position: relative;
+            aspect-ratio: 1 / 1;
+            width: 100%;
+            border: 0;
+            border-radius: 18px;
+            overflow: hidden;
+            cursor: pointer;
+            background-color: var(--light-bg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            padding: 0;
+            text-align: left;
+            appearance: none;
+        }
+
+        .news-item:hover,
+        .news-item:focus-visible {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.14);
+            outline: none;
+            border: 5px solid #2cfa3a;
+        }
+
+        .news-item::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.72) 100%);
+        }
+
+        .news-item-content {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1rem;
+            color: var(--white);
+        }
+
+        .news-item-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.35rem;
+        }
+
+        .news-item-meta {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .news-arrow {
+            border: none;
+            background: #000000;
+            color: var(--white);
+            width: 2.6rem;
+            height: 2.6rem;
+            border-radius: 50%;
+            cursor: pointer;
             font-size: 1.1rem;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.14);
         }
 
-        .skill-category ul {
-            list-style: none;
-            font-size: 0.95rem;
-            line-height: 1.8;
+        .news-arrow:hover:not(:disabled) {
+            background: var(--neon-highlight2);
+            color: #000;
         }
 
-        .skill-category li:before {
-            content: "▸ ";
-            color: var(--accent-color);
-            font-weight: bold;
-            margin-right: 0.5rem;
+        .news-arrow:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        .news-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.25rem;
+            z-index: 250;
+        }
+
+        .news-modal[hidden] {
+            display: none;
+        }
+
+        .news-modal-card {
+            width: min(100%, 560px);
+            background: var(--white);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.24);
+        }
+
+        .news-modal-image {
+            aspect-ratio: 1 /1;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .news-modal-body {
+            padding: 1.25rem 1.25rem 1.5rem;
+        }
+
+        .news-modal-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: black;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-modal-description {
+            color: #555;
+            line-height: 1.7;
+        }
+
+         .news-modal-date {
+            color: #555;
+            line-height: 1.7;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        .news-modal-close {
+            margin-top: 1rem;
+            background: #000000;
+            color: var(--white);
+            border: 0;
+            border-radius: 999px;
+            padding: 0.6rem 1rem;
+            cursor: pointer;
+        }
+
+        .news-modal-close:hover {
+            background: var(--neon-highlight2);
+            color: black;
         }
 
         footer {
-            background: var(--primary-color);
-            color: var(--white);
-            padding: 2rem;
+            background: var(--neon-highlight3);
+            color: var(--black);
+            padding: 1rem;
             text-align: center;
             margin-top: 3rem;
             font-size: 0.95rem;
         }
 
         footer a {
-            color: var(--white);
+            color: var(--black);
             text-decoration: none;
             margin: 0 0.5rem;
             transition: opacity 0.3s;
@@ -303,6 +699,10 @@
         @media (max-width: 768px) {
             header h1 {
                 font-size: 1.8rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
             }
 
             header .subtitle {
@@ -329,9 +729,51 @@
             }
         }
 
+        /* Responsive nav: show burger before links start to wrap */
+        @media (max-width: 900px) {
+            nav {
+                padding: 0.5rem 1rem;
+            }
+
+            nav ul {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background: #ffffff;
+                width: 90%;
+                max-width: 320px;
+                box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+                flex-direction: column;
+                gap: 0;
+                transform-origin: top right;
+                display: none;
+                margin: 0;
+                padding: 0.5rem 1rem;
+                border-radius: 8px;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            nav li {
+                padding: 0.5rem 0;
+            }
+
+            .nav-toggle {
+                display: inline-flex;
+                margin-right: 0;
+            }
+
+            nav ul {
+                width: calc(100% - 2rem);
+                max-width: 360px;
+            }
+        }
+
         .button {
             display: inline-block;
-            background: var(--accent-color);
+            background: #000000;
             color: var(--white);
             padding: 0.75rem 1.5rem;
             border-radius: 4px;
@@ -344,15 +786,17 @@
         .button:hover {
             background: var(--primary-color);
         }
-        /* Tooltip for Sofar image */
+        
         .tooltip {
             position: relative;
             cursor: pointer;
-            color: var(--primary-color);
-            text-decoration: underline;
+            text-decoration: underline dotted;
             display: inline-block;
+            vertical-align: baseline;
         }
+
         .tooltip .tooltip-content {
+            color: white;
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
@@ -396,152 +840,528 @@
     
 </head>
 <body>
-    <header>
-        <h1>Safiyyah Nawaz, PhD</h1>
-        <div class="contact-info">
-            <a href="mailto:nawazsafiyyah@gmail.com">Email</a> •
-            <a href="https://www.linkedin.com/in/safiyyahnawaz/" target="_blank">LinkedIn</a> •
-            <a href="https://orcid.org/0009-0007-7324-0039" target="_blank">ORCID</a>
-        </div>
-    </header>
+
 
     <nav>
-        <ul>
-            <li><a href="#about">Home</a></li>
-            <li><a href="publications.html">Publications</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="public-engagement.html">Public Engagement</a></li>
+        <div class="logo">
+            <img src="images/half_circle.png" style="width: 3rem; height: 3rem">
+        </div>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
+            <span class="hamburger"></span>
+        </button>
+        <ul id="main-nav">
+            <li><a href="index.html"><i>Home</i></a></li>
+            <li><a href="research.html"><i>Research</i></a></li>
+            <li><a href="publications.html"><i>Publications</i></a></li>
+            <li><a href="public-engagement.html"><i>Public Engagement</i></a></li>
+            <!-- <li><a href="portfolio.html"><i>Portfolio</i></a></li> -->
         </ul>
     </nav>
 
+    
     <div class="container">
+        <!-- <div class ="doodles">    </div> -->
+        
         <!-- About Section -->
         <section id="about">
             
             <div class="about-section">
                 <div class="about-text about-content">
                     <p>
-                        Hi there! I'm Safiyyah, an interdisciplinary researcher and creative practitioner interested in understanding how people experience and find meaning through art, music and culture. My academic work explores the relationship between human cognition and aesthetic experiences, with a particular focus on how music shapes autobiographical memory. I am trained in music psychology and neuroaesthetics, and also work collaboratively with researchers across computing, virtual reality and museum studies. 
+                        I'm <span class="tooltip">Safiyyah<span class="tooltip-content">meow</span></span>, an interdisciplinary researcher and creative practitioner interested in understanding how we experience and find meaning through art, music and culture. I am trained in music psychology and neuroaesthetics, and I work collaboratively with researchers across disciplines including cognitive science, computing and museum studies. My primary work examines how music shapes the way we form and retrieve autobiographical memories, which you can learn more about in my <a href="projects.html">research</a> page.
+                    </p>                    
+                    <p>
+                        As a self-taught creative, I explore the intersection of art, science and technology through both research and creative practice, with a emphasis on creating work that is meaningful, accessible and socially impactful. I am especially interested in decolonial approaches to psychological research, open science and citizen science. Check out <a href=www.memoryrecords.xyz>Memory Records</a>, my current passion project, for an example of this work. 
                     </p>
                     <p>
-                        My research approach incorporates methodologies from across disciplines including neuroimaging, virtual reality, behavioural experimentation, signal processing, natural language processing and experience sampling. I am a keen advocate for open science and decolonial approaches to research, which shape my perspective as a researcher. 
-                    </p>
-                    <p>
-                        Alongside my academic work, I have worked in live event and cultural settings as a 
-                        <span class="tooltip" tabindex="0" aria-describedby="sofar-tip">MC for Sofar Sounds
-                            <span class="tooltip-content" id="sofar-tip" role="img" aria-label="Sofar Sounds poster">
-                                <img src="images/sofar.jpeg" alt="Sofar Sounds poster" />
-                                <div class="tooltip-caption"><em>MCing a Sofar concert (2023)</em></div>
-                            </span>
-                        </span>, a panelist at Houghton Music Festival, as a collaborator for museum-based studies at Manchester Art Gallery, and as a freelance graphic designer. I work across a range of creative disciplines, including computational art, music production, DJing, illustration, graphic design and jewellery making.
-                    </p>
-                    <p>
-                        I am deeply passionate about facilitating robust, accessible and socially meaningful research, and I welcome opportunities for collaboration, public engagement, creative projects, speaking engagements and interdisciplinary partnerships.
+                         I welcome opportunities for collaboration, partnerships or speaking engagements. Get in touch for more information!
                     </p>
                 </div>
                 <div class="about-profile">
                     <div class="profile-photo">
-                        <img src = "images/profile.JPG" alt="Profile Photo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 18px;">
+                        <img src = "images/bakatwa.jpg" alt="Profile Photo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 200px; border: 5px solid var(--neon-highlight3)">
+                    </div>
+                    <div class="profile-caption">
+                        <p>Safiyyah Nawaz, PhD</p>
+                    </div>
+                    <div class="profile-links" aria-label="Profile links">
+                        <a href="images/CV Condensed.pdf" target="_blank"><span class="logo-placeholder" target="_blank">CV</span></a>
+                        <a href="https://orcid.org/0009-0007-7324-0039" target="_blank"><span class="logo-placeholder"><img src = "images/orcid.svg"></a>
+                        <a href="mailto:nawazsafiyyah@proton.me" target="_blank"><span class="logo-placeholder" ><img src = "images/email.png"></a>
+                        <a href="https://www.linkedin.com/in/safiyyahnawaz/" target="_blank"><span class="logo-placeholder"><img src = "images/linkedin.png"></a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Education Section -->
-        <section id="education">
-            <h2>Education</h2>
+        <!-- <div class="divider">
+                <img src = "images/half_circle.png" alt = "divider" style = "width: 3rem; height: 3rem; object-fit: fill; rotate: 270deg; object-align: center; margin: 0 auto; display: block;">
+        </div> -->
+        
 
-            <div class="education-item">
-                <div class="item-header">
-                    <div>
-                        <div class="item-title">PhD in Psychology and Neuroscience</div>
-                        <div class="item-subtitle">Goldsmiths, University of London</div>
-                    </div>
-                    <div class="item-date"> 2023 – 2026</div>
-                    <div class="item-description">
-                    Dissertation title: New Approaches to Understanding the Role of Music in the Encoding and Retrieval of Episodic and Autobiographical Memory
-                    </div>
-                </div>
-            </div>
-
-            <div class="education-item">
-                <div class="item-header">
-                    <div>
-                        <div class="item-title">MSc in Psychology of the Arts, Neuroaesthetics and Creativity</div>
-                        <div class="item-subtitle">Goldsmiths, University of London</div>
-                    </div>
-                    <div class="item-date"> 2019 – 2020</div>
-                </div>
-            </div>
-
-            <div class="education-item">
-                <div class="item-header">
-                    <div>
-                        <div class="item-title">BA in Chemistry</div>
-                        <div class="item-subtitle">University of North Carolina at Chapel Hill</div>
-                    </div>
-                    <div class="item-date"> 2014 – 2018</div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Skills Section -->
+         <!-- Skills Section -->
         <section id="skills">
-            <h2>Skills & Expertise</h2>
+            <div class="skills-canvas-wrap">
+                <div id="skills-canvas" aria-label="p5.js canvas placeholder"></div>
+            </div>
             <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Technical Skils</h3>
-                    <ul>
-                        <li>Programming: R, MATLAB, Javascript, Python, Unix</li>
-                        <li>Neuroimaging: EEGLab, FieldTrip, FSL</li>
-                        <li>Statistical Analysis: mixed-effects modelling, dimensionality reduction, Bayesian statistics</li>
-                        <li>Graphic Design and Illustration: Adobe Illustrator, Adobe Photoshop, Canva  </li>
-                    </ul>
+                <div class="skill-category1">
+                    <h3><i>Technical Skills</i></h3>
+                        <div class="tags">
+                            <div class="tag">R</div>
+                            <div class="tag-sub">spotifyR</div>
+                            <div class="tag">MATLAB</div>
+                            <div class="tag-sub">EEGLab</div>
+                            <div class="tag-sub">FieldTrip</div>
+                            <div class="tag-sub">MIRToolbox</div>
+                            <div class="tag">Javascript</div>
+                            <div class="tag-sub">p5</div>
+                            <div class="tag-sub">three</div>
+                            <div class="tag-sub">React</div>                            
+                            <div class="tag">Python</div>
+                            <div class="tag-sub">librosa</div>
+                            <div class="tag">HTML/CSS</div>
+                            <div class="tag">Unix</div>
+                            <div class="tag-sub">FSL</div>
+                            <div class="tag">Unity</div>
+                            <div class="tag">PsychoPy</div>
+                            <div class="tag">Samply Research</div>
+                            <div class="tag">Qualtrics</div>
+                        </div>                        
                 </div>
-                <div class="skill-category">
-                    <h3>Methodologies</h3>
-                    <ul>
-                        <li>Behavioural research tools: Qualtrics, PsychoPy</li>
-                        <li>Virtual Reality: Unity, </li>
-                        <li>Data Visualization</li>
-                        <li>Machine Learning</li>
-                    </ul>
+                <div class="skill-category2">
+                    <h3><i>Methodologies</i></h3>
+                    <div class="tags">
+                        <div class="tag">Behavioural research</div>
+                        <div class="tag">Virtual reality</div>
+                        <div class="tag">EEG</div>
+                        <div class="tag">Experience sampling</div>
+                        <div class="tag">Bayesian inference</div>
+                        <div class="tag">Mixed-effects modelling</div>
+                        <div class="tag">Music information retrieval</div>
+                        <div class="tag">Citizen science</div>
+                        <div class="tag">Natural language processing</div>
+                    </div>
                 </div>
-                <div class="skill-category">
-                    <h3>Domain Expertise</h3>
-                    <ul>
-                        <li>Topic Area 1</li>
-                        <li>Topic Area 2</li>
-                        <li>Topic Area 3</li>
-                        <li>Specialized Knowledge</li>
-                    </ul>
+                <div class="skill-category3">
+                    <h3><i>Research Interests</i></h3>
+                    <div class="tags">
+                        <div class="tag">Music-evoked autobiographical memory</div>
+                        <div class="tag">Music cognition</div>
+                        <div class="tag">Neuroaesthetics</div>
+                        <div class="tag">Cross-cultural studies</div>
+                        <div class="tag">Museum studies</div>
+                        <div class="tag">Decoloniality </div>
+                        <div class="tag">Musical reward</div>
+                    </div>
+                </div>
+                <div class="skill-category4">
+                    <h3><i>Design & creative skills</i></h3>
+                    <div class="tags">
+                        <div class="tag">Graphic design</div>
+                        <div class="tag">Illustration</div>
+                        <div class="tag">Creative coding</div>
+                        <div class="tag">Music production</div>
+                        <div class="tag">DJing</div>
+                        <div class="tag">Jewellery making</div>
+                    </div>
+                </div>
+            </div>
+
+            
+        </section>
+
+        <!-- News Section -->
+        <section id="news">
+            <div class="news-canvas-wrap">
+                <div id="news-canvas" aria-label="p5.js canvas placeholder"></div>
+            </div>
+            <div class="news-carousel">
+                <button type="button" class="news-arrow news-arrow-left" aria-label="Show previous news">←</button>
+                <div class="news-viewport">
+                    <div class="news-track">
+                        <div class="news-slide">
+                            <div class="news-slide-grid">
+                                <button type="button" class="news-item" data-image="images/viva_ig.png" data-title="Viva Success!" data-description="Thrilled to say that I passed my viva with no corrections! A delightful discussion with Dr Amy Belfi and Dr Laura Ferreri." data-date="12/05/2026">
+                                    <span class="news-item-content">
+                                        <span class="news-item-title">Viva Success!</span>
+                                        <span class="news-item-meta">May 2026</span>
+                                    </span>
+                                </button>
+                                <button type="button" class="news-item" data-image="images/sempre.jpg" data-title="SEMPRE PGR/ECR Conference" data-description="Presenting my experience sampling study examining the role of music in the encoding and retrieval of every day events at the SEMPRE conference - a fantastic meeting of bright early career researchers." data-date="16/04/2026">
+                                    <span class="news-item-content">
+                                        <span class="news-item-title">SEMPRE PGR/ECR Conference</span>
+                                        <span class="news-item-meta">April 2026</span>
+                                    </span>
+                                </button>
+                                <button type="button" class="news-item" data-image="images/crea.jpg" data-title="CREA Workshop" data-description="I attended the Crossroads of Research and Experience of Art (CREA) workshop at the Hayward Gallery / Southbank Centre, where we discussed the major challenges facing art spaces today." data-date="30/04/2026">
+                                    <span class="news-item-content">
+                                        <span class="news-item-title">CREA Workshop</span>
+                                        <span class="news-item-meta">April 2026</span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="news-slide">
+                            <div class="news-slide-grid">
+                                <button type="button" class="news-item" data-image="images/fabric.jpg" data-title="Quantum Sound at Fabric" data-description="Collecting brain data as participants listen to Mastery: Quantum Sound at Fabric to investigate sound-induced altered states." data-date="02/2026">
+                                    <span class="news-item-content">
+                                        <span class="news-item-title">Quantum Sound at Fabric</span>
+                                        <span class="news-item-meta">February 2026</span>
+                                    </span>
+                                </button>
+                                <button type="button" class="news-item" data-image="images/dmrn.jpeg" data-title="DMRN 20+ Workshop" data-description="Presenting about Memory Records at the Digital Music Research Network workshop" data-date="16/12/2025">
+                                    <span class="news-item-content">
+                                        <span class="news-item-title">DMRN 20+ Workshop</span>
+                                        <span class="news-item-meta">December 2025</span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="news-arrow news-arrow-right" aria-label="Show next news">→</button>
+            </div>
+
+            <div id="news-modal" class="news-modal" hidden>
+                <div class="news-modal-card" role="dialog" aria-modal="true" aria-labelledby="news-modal-title">
+                    <div id="news-modal-image" class="news-modal-image"></div>
+                    <div class="news-modal-body">
+                        <h3 id="news-modal-title" class="news-modal-title"></h3>
+                        <p id="news-modal-description" class="news-modal-description"></p>
+                        <br>
+                        <p id="news-modal-date" class="news-modal-date"></p>
+                        <button type="button" class="news-modal-close" id="news-modal-close">Close</button>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <!-- <section id="contact">
-            <h2>Contact</h2>
-            <div class="about-content">
-                <p>
-                    I'm always interested in discussing research, collaboration opportunities, and professional inquiries. Feel free to reach out!
-                </p>
-                <p>
-                    <strong>Email:</strong> <a href="mailto:nawazsafiyyah@gmail.com" style="color: var(--accent-color); text-decoration: none;">nawazsafiyyah@gmail.com</a><br>
-                </p>
-                <a href="mailto:nawazsafiyyah@gmail.com" class="button">Send me an email</a>
-            </div>
-        </section> -->
+
     </div>
 
     <footer>
         <p>
-            &copy; 2026 Safiyyah Nawaz. All rights reserved. |
-            <a href="https://github.com" target="_blank">GitHub</a> •
-            <a href="https://linkedin.com" target="_blank">LinkedIn</a> •
-            <a href="https://orcid.org" target="_blank">ORCID</a>
+            &copy; 2026 Safiyyah Nawaz. All rights reserved.
         </p>
     </footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Mobile nav toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const mainNav = document.getElementById('main-nav');
+
+        if (navToggle && mainNav) {
+            navToggle.addEventListener('click', () => {
+                const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+                navToggle.setAttribute('aria-expanded', String(!expanded));
+                mainNav.classList.toggle('show');
+            });
+
+            // Close nav when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!navToggle.contains(e.target) && !mainNav.contains(e.target)) {
+                    navToggle.setAttribute('aria-expanded', 'false');
+                    mainNav.classList.remove('show');
+                }
+            });
+        }
+        document.querySelectorAll('nav a').forEach((link) => {
+            link.addEventListener('mouseenter', () => {
+                const highlightVars = ['--neon-highlight1', '--neon-highlight2', '--neon-highlight3'];
+                const chosenVar = highlightVars[Math.floor(Math.random() * highlightVars.length)];
+                link.style.setProperty('--nav-hover-color', `var(${chosenVar})`);
+                link.style.setProperty('--nav-hover-border-color', `var(${chosenVar})`);
+            });
+
+            link.addEventListener('mouseleave', () => {
+                link.style.removeProperty('--nav-hover-color');
+                link.style.removeProperty('--nav-hover-border-color');
+            });
+        });
+
+        document.querySelectorAll('.tag').forEach((link) => {
+            link.addEventListener('mouseenter', () => {
+                const highlightVars = ['--neon-highlight1', '--neon-highlight2', '--neon-highlight3','--neon-highlight4'];
+                const chosenVar = highlightVars[Math.floor(Math.random() * highlightVars.length)];
+                link.style.setProperty('--nav-hover-color', `var(${chosenVar})`);
+                link.style.setProperty('--nav-hover-border-color', `var(${chosenVar})`);
+            });
+
+            link.addEventListener('mouseleave', () => {
+                link.style.removeProperty('--nav-hover-color');
+                link.style.removeProperty('--nav-hover-border-color');
+            });
+        });
+
+        const newsModal = document.getElementById('news-modal');
+        const newsModalImage = document.getElementById('news-modal-image');
+        const newsModalTitle = document.getElementById('news-modal-title');
+        const newsModalDescription = document.getElementById('news-modal-description');
+        const newsModalDate = document.getElementById('news-modal-date');
+        const newsModalClose = document.getElementById('news-modal-close');
+        const newsTrack = document.querySelector('.news-track');
+        const newsSlides = Array.from(document.querySelectorAll('.news-slide'));
+        const newsPrevButton = document.querySelector('.news-arrow-left');
+        const newsNextButton = document.querySelector('.news-arrow-right');
+        let currentNewsSlide = 0;
+
+        const closeNewsModal = () => {
+            newsModal.hidden = true;
+        };
+
+        const updateNewsCarousel = () => {
+            if (!newsTrack) return;
+            newsTrack.style.transform = `translateX(-${currentNewsSlide * 100}%)`;
+            if (newsPrevButton) {
+                newsPrevButton.disabled = currentNewsSlide === 0;
+            }
+            if (newsNextButton) {
+                newsNextButton.disabled = currentNewsSlide === newsSlides.length - 1;
+            }
+        };
+
+        if (newsPrevButton) {
+            newsPrevButton.addEventListener('click', () => {
+                currentNewsSlide = Math.max(0, currentNewsSlide - 1);
+                updateNewsCarousel();
+            });
+        }
+
+        if (newsNextButton) {
+            newsNextButton.addEventListener('click', () => {
+                currentNewsSlide = Math.min(newsSlides.length - 1, currentNewsSlide + 1);
+                updateNewsCarousel();
+            });
+        }
+
+        document.querySelectorAll('.news-item').forEach((card) => {
+            card.style.backgroundImage = `url('${card.dataset.image}')`;
+
+            card.addEventListener('click', () => {
+                newsModalImage.style.backgroundImage = `url('${card.dataset.image}')`;
+                newsModalTitle.textContent = card.dataset.title;
+                newsModalDescription.textContent = card.dataset.description;
+                newsModalDate.textContent = card.dataset.date;
+                newsModal.hidden = false;
+            });
+
+            card.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    card.click();
+                }
+            });
+        });
+
+        updateNewsCarousel();
+
+        if (newsModalClose) {
+            newsModalClose.addEventListener('click', closeNewsModal);
+        }
+
+        if (newsModal) {
+            newsModal.addEventListener('click', (event) => {
+                if (event.target === newsModal) {
+                    closeNewsModal();
+                }
+            });
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && newsModal && !newsModal.hidden) {
+                closeNewsModal();
+            }
+        });
+    });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+<script>
+const sketchContainer = document.getElementById('skills-canvas');
+
+if (sketchContainer) {
+    new p5((p) => {
+        let numCircles = 10;
+        let circles = [];
+        let neonColors = [p.color('#f33cea'), p.color('#2cfa3a'), p.color('#58f0f8')];
+
+        class Circle {
+            constructor(x,y,radius,color){
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+                this.color = color;
+            }
+
+            show() {
+                
+                
+                p.fill(this.color);
+                p.noStroke();;
+                p.ellipse(this.x, this.y, this.radius, this.radius);
+            }
+
+            move(){
+                if(this.x > p.width + this.radius){
+                    this.x = -this.radius;
+                    this.y = p.random(p.height);
+                }
+                
+                this.x += p.random(1,3);
+            }
+        }
+        p.setup = () => {
+            p.createCanvas(sketchContainer.clientWidth, sketchContainer.clientHeight);
+            for(let i =0;i <numCircles; i ++){
+                let circle = new Circle(p.random(p.width),p.random(p.height),p.random(20,60),neonColors[Math.floor(p.random(neonColors.length))]);
+                circles.push(circle);
+            }
+           
+        };
+
+        let slide = 0;
+        let moveX = 0;
+        let pulse;
+        
+        p.draw = () => {
+            p.background(0);
+            let radius = 30;
+            let neonColor = neonColors[Math.floor(p.random(neonColors.length))];
+            p.fill(255);
+            p.ellipse(p.mouseX, p.mouseY, radius + pulse, radius + pulse);
+
+            for(let i =0;i < circles.length; i++){
+                circles[i].show();  
+                circles[i].move();
+                
+            }
+
+            p.fill(255);
+            p.noStroke();
+            p.textSize(34);
+            p.textAlign(p.CENTER,p.CENTER);
+            
+            p.text("SKILLS & EXPERTISE",p.width/2,p.height/2);
+        
+    
+            moveX += p.map(p.mouseX,0,p.width, -.5, .5);
+
+            pulse = p.sin(p.frameCount/20) * 50;
+            
+        };
+
+        p.mouseClicked =() => {
+            if (circles.length > 35){
+                circles.shift();
+            } else {
+                let clickCircle = new Circle(p.mouseX,p.mouseY,p.random(20,60),neonColors[Math.floor(p.random(neonColors.length))]);
+                circles.push(clickCircle);
+            }        
+        }
+        
+
+        p.windowResized = () => {
+            p.resizeCanvas(sketchContainer.clientWidth, sketchContainer.clientHeight);
+        };
+    }, sketchContainer);
+}
+</script>
+
+<script>
+const newsContainer = document.getElementById('news-canvas');
+
+if (newsContainer) {
+    new p5((p) => {
+        let numCircles = 10;
+        let circles = [];
+        let neonColors = [p.color('#f33cea'), p.color('#2cfa3a'), p.color('#58f0f8')];
+
+        class Circle {
+            constructor(x,y,radius,color){
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+                this.color = color;
+            }
+
+            show() {
+                
+                
+                p.fill(this.color);
+                p.noStroke();;
+                p.ellipse(this.x, this.y, this.radius, this.radius);
+            }
+
+            move(){
+                if(this.x < 0 - this.radius){
+                    this.x = p.width + this.radius;
+                    this.y = p.random(p.height);
+                }
+                
+                this.x += -1;
+            }
+        }
+        p.setup = () => {
+            p.createCanvas(newsContainer.clientWidth, newsContainer.clientHeight);
+            for(let i =0;i <numCircles; i ++){
+                let circle = new Circle(p.random(p.width),p.random(p.height),p.random(20,60),neonColors[Math.floor(p.random(neonColors.length))]);
+                circles.push(circle);
+            }
+           
+        };
+
+        let slide = 0;
+        let moveX = 0;
+        let pulse;
+        
+        p.draw = () => {
+            p.background(0);
+            let radius = 30;
+            let neonColor = neonColors[Math.floor(p.random(neonColors.length))];
+            p.fill(255);
+            p.ellipse(p.mouseX, p.mouseY, radius + pulse, radius + pulse);
+
+            
+
+            let myText = "NEWS";
+
+            p.fill(255);
+            p.noStroke();
+            p.textSize(34);
+            p.textAlign(p.CENTER,p.CENTER);
+            
+            p.text(myText,p.width/2,p.height/2);
+        
+            for(let i =0;i < circles.length; i++){
+                circles[i].show();  
+                circles[i].move();
+                
+            }
+    
+            moveX += p.map(p.mouseX,0,p.width, -.5, .5);
+
+            pulse = p.sin(p.frameCount/20) * 50;
+            
+        };
+
+        p.mouseClicked =() => {
+            if (circles.length > 35){
+                circles.shift();
+            } else {
+                let clickCircle = new Circle(p.mouseX,p.mouseY,p.random(20,60),neonColors[Math.floor(p.random(neonColors.length))]);
+                circles.push(clickCircle);
+            }        
+        }
+        
+
+        p.windowResized = () => {
+            p.resizeCanvas(newsContainer.clientWidth, newsContainer.clientHeight);
+        };
+    }, newsContainer);
+}
+</script>
+
 </body>
 </html>

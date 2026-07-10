@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Publications — Safiyyah Nawaz</title>
+    <title>Publications & Presentations</title>
     <style>
-        * {
+       * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            
         }
 
         :root {
@@ -18,48 +19,96 @@
             --text-color: #333333;
             --light-bg: #f8f9fa;
             --border-color: #e0e0e0;
+            --background-color: #ffffff;
             --white: #ffffff;
+            --neon-highlight1: #f33cea;
+            --neon-highlight2: #2cfa3a;
+            --neon-highlight3: #58f0f8;
+            --neon-highlight4: #ff9a1f;
         }
 
         body {
             font-family: "Kantumruy Pro", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
             line-height: 1.45;
             color: var(--text-color);
-            background-color: var(--white);
+            background-color: var(--background-color);
+            
         }
 
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 200;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: var(--white);
-            padding: 2rem 1rem;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        a {
+            color: var(--neon-highlight1);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--neon-highlight3);
+        }
+
+        .kantumruy-pro {
+            font-family: "Kantumruy Pro", sans-serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+            font-weight: 400;
+        }
+
+        .doodles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background-image: url("images/half_circle.png");
+            background-origin:border-box;
+            background-size: 50px 50px;
+            background-repeat: no-repeat;
+            object-fit: cover;
+            padding: 25px 25px;
         }
 
         nav {
-            background: var(--white);
-            padding: 1rem 1rem;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            background: #ffffffe6;
+            padding: 1.5rem 0rem;
+            max-height: 5rem;
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
             position: sticky;
-            top: 8rem;
+            top: 0rem;
             z-index: 150;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .logo {
+            padding:0rem 0rem 0rem 0rem;
+            width: 100%;
+            max-width: 90%;
+            justify-content: flex-start;
+            object-fit: contain;
+            width: 3rem;
+            height: 3rem;
+        }
+
+        .logo:hover {
+            rotate: 360deg;
+            transition: rotate 1s ease-in-out;
         }
 
         nav ul {
             list-style: none;
+            font-size: 1.1rem;
             display: flex;
-            justify-content: center;
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 3rem;
+            width: 100%;
+            max-width: 90%;
+            margin: 0;
+            padding: 3rem;
         }
 
         nav a {
-            color: var(--primary-color);
+            color: var(--black);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
@@ -67,20 +116,29 @@
             padding-bottom: 0.25rem;
         }
 
-        nav a:hover,
-        nav a.active {
-            color: var(--accent-color);
-            border-bottom-color: var(--accent-color);
+        nav a:hover {
+            color: var(--nav-hover-color, var(--neon-highlight1));
+            border-bottom-color: var(--nav-hover-border-color, var(--neon-highlight1));
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 100%;
             margin: 0 auto;
-            padding: 0 1rem;
+            padding: 0 0rem;
+        }
+
+        .pubs-pres {
+            max-width: 85%;
+            min-height: calc(100vh - 5rem);
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         section {
-            padding: 4rem 0;
+            padding: 1rem 0;
             border-bottom: 1px solid var(--border-color);
         }
 
@@ -96,6 +154,22 @@
             border-bottom: 2px solid var(--accent-color);
             padding-bottom: 0.5rem;
             display: inline-block;
+        }
+
+        .publications-canvas-wrap {
+            margin-top: 1rem;
+            background: var(--white);
+            padding: 0rem;
+            min-width: 100%;
+        }
+
+        #publications-canvas {
+            width: 100%;
+            height: 5%;
+            display: block;
+            border-radius: 0px;
+            overflow: hidden;
+            position: relative;
         }
 
         .publication-item {
@@ -120,14 +194,15 @@
         }
 
         .item-title {
-            font-size: 1.1rem;
-            font-weight: 400;
-            color: var(--primary-color);
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: black;
         }
 
         .item-subtitle {
-            color: var(--accent-color);
-            font-weight: 500;
+            color: rgb(50, 50, 50);
+            font-size: 1.2rem;
+            font-weight: 400;
         }
 
         .item-date {
@@ -148,7 +223,7 @@
             margin-top: 0.5rem;
         }
 
-        .tags {
+       .tags {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
@@ -156,25 +231,43 @@
         }
 
         .tag {
-            background: var(--light-bg);
-            color: var(--primary-color);
+            background: #000000;
+            color: var(--white);
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
-            font-size: 0.85rem;
-            border: 1px solid var(--border-color);
+            font-size: 1rem;
+            border: 2px solid #000000;
+        }
+
+        .tag:hover {
+            background: var(--nav-hover-color, var(--neon-highlight1));
+            color: #000000;
+        }
+
+        .tag-sub {
+            background: #525252;
+            color: var(--white);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 1rem;
+            border: 2px solid #000000;
+        }
+
+        .tag-sub:hover {
+            background: var(--nav-hover-color, var(--neon-highlight1));
         }
 
         footer {
-            background: var(--primary-color);
-            color: var(--white);
-            padding: 2rem;
+            background: var(--neon-highlight3);
+            color: var(--black);
+            padding: 1rem;
             text-align: center;
             margin-top: 3rem;
             font-size: 0.95rem;
         }
 
         footer a {
-            color: var(--white);
+            color: var(--black);
             text-decoration: none;
             margin: 0 0.5rem;
             transition: opacity 0.3s;
@@ -192,36 +285,32 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>Safiyyah Nawaz, PhD</h1>
-        <div class="contact-info">
-            <a href="mailto:nawazsafiyyah@gmail.com">Email</a> •
-            <a href="https://www.linkedin.com/in/safiyyahnawaz/" target="_blank">LinkedIn</a> •
-            <a href="https://orcid.org/0009-0007-7324-0039" target="_blank">ORCID</a>
-        </div>
-    </header>
 
-    <nav>
+   <nav>
+        <div class="logo">
+            <img src="images/half_circle.png" style="width: 3rem; height: 3rem">
+        </div>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="publications.html" class="active">Publications</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="public-engagement.html">Public Engagement</a></li>
+            <li><a href="index.html"><i>Home</i></a></li>
+            <li><a href="research.html"><i>Research</i></a></li>
+            <li><a href="publications.html"><i>Publications</i></a></li>
+            <li><a href="public-engagement.html"><i>Public Engagement</i></a></li>
+            <!-- <li><a href="portfolio.html"><i>Portfolio</i></a></li> -->
         </ul>
     </nav>
 
     <div class="container">
+        <div class="pubs-pres">
+         <div class="publications-canvas-wrap">
+                <div id="publications-canvas" aria-label="p5.js canvas placeholder"></div>
+        </div>
         <section>
-            <h2>Publications</h2>
             <div class="publication-item">
                 <div class="item-header">
                     <div>
                         <div class="item-title">Nawaz, S., & Omigie, D. (2025). <b>Qualities of music-evoked autobiographical memories are associated with auditory features of the memory-evoking music.</b> PLOS ONE, 20(8), e0329072. <a href="https://doi.org/10.1371/journal.pone.0329072" target="_blank">https://doi.org/10.1371/journal.pone.0329072</a></div>
                         </div>
-                </div>
-                <div class="item-description">
-                    This paper examines the relationship between the auditory features of music and the qualities of autobiographical memories evoked by that music. 
-                </div>
+                </div>                
                 <div class="tags">
                     <span class="tag">Music-Evoked Autobiographical Memory</span>
                     <span class="tag">Qualtrics</span>
@@ -235,9 +324,6 @@
                         <div class="item-title">Igdalova, A., Nawaz, S., & Chamberlain, R. (2025). <b>A view worth talking about: The influence of social interaction on aesthetic experience and well-being outcomes in the gallery.</b> Psychology of Aesthetics, Creativity, and the Arts. <a href="https://doi.org/10.1037/aca0000733" target="_blank">https://doi.org/10.1037/aca0000733</a></div>
                     </div>
                 </div>
-                <div class="item-description">
-                    This study investigates how social interaction influences aesthetic experiences and well-being outcomes in gallery settings at Manchester Art Gallery.
-                </div>
                 <div class="tags">
                     <span class="tag">Museum Studies</span>
                     <span class="tag">Social Interaction</span>
@@ -248,9 +334,6 @@
                     <div>
                         <div class="item-title">Murphy, E., North, E., Nawaz, S., & Omigie, D. (2023). <b>The influence of music liking on episodic memory for rich spatiotemporal contexts.</b> Memory, 31(5), 589–604. <a href="https://doi.org/10.1080/09658211.2022.2154367" target="_blank">https://doi.org/10.1080/09658211.2022.2154367</a></div>
                        </div>
-                </div>
-                <div class="item-description">
-                    This study examines how music liking affect the encoding of memories encoded in rich spatiotemporal contexts using an online What-Where-When task.
                 </div>
                 <div class="tags">
                     <span class="tag">What-Where-When</span>
@@ -264,9 +347,6 @@
                         <div class="item-title">Nawaz, S., & Omigie, D. (2023). <b>Investigating the interaction of pleasantness and arousal and the role of aesthetic emotions on episodic memory using a musical what-where-when paradigm.</b> Cognition and Emotion, 37(2), 320–328. <a href="https://doi.org/10.1080/02699931.2023.2185206" target="_blank">https://doi.org/10.1080/02699931.2023.2185206</a></div>
                         </div>                    
                 </div>
-                <div class="item-description">
-                    This study examines how emotional music and aesthetic response affect the encoding of memories encoded in rich spatiotemporal contexts using an online What-Where-When task.
-                </div>
                 <div class="tags">
                     <span class="tag">What-Where-When</span>
                     <span class="tag">Aesthetic Emotions</span>
@@ -276,53 +356,60 @@
         </section>
 
         <section>
-            <h2>Presentations</h2>
+            <div class="presentations-canvas-wrap">
+                <div id="presentations-canvas" aria-label="p5.js canvas placeholder"></div>
+            </div>
             <div class="publication-item">
                 <div class="item-header">
                     <div>
-                        <div class="item-title">Examining Music's Influence on the Encoding and Retrieval of Episodic Autobiographical Memories in Everyday Life</div>
+                        <div class="item-title"><a href="https://www.canva.com/design/DAHEX7FGd0U/VtaW7kRHDUyOk0P9EDafeQ/view?utm_content=DAHEX7FGd0U&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h4abe58d7b1" target="_blank"> Examining Music's Influence on the Encoding and Retrieval of Episodic Autobiographical Memories in Everyday Life </a></div>
                         <div class="item-subtitle">Nawaz, S., Omigie, D. (2026). Poster presented at: SEMPRE 2026 PGR/ECR Conference, Cambridge, UK.</div>
                     </div>
                 </div>
                 <div class="tags">
                     <span class="tag">Autobiographical Memory</span>
-                    <span class="tag">Music</span>
+                    <span class="tag">Experience Sampling</span>
+                    <span class="tag">Encoding and Retrieval</span>
                 </div>
             </div>
             <div class="publication-item">
                 <div class="item-header">
                     <div>
-                        <div class="item-title">Memory Records: A musical memory archive fueled by computing, citizen science and global participation</div>
+                        <div class="item-title"><a href="https://www.canva.com/design/DAG51fH-cBQ/OY7Y2ievcJ4Y-0FT5SDouA/view?utm_content=DAG51fH-cBQ&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h8a5d4a89f5" target="_blank">Memory Records: A musical memory archive fueled by computing, citizen science and global participation</a> </div>
                         <div class="item-subtitle">Nawaz, S. (2025). Talk presented at: Digital Music Research Network Workshop 2025, London, UK.</div>
                     </div>
                 </div>
                 <div class="tags">
                     <span class="tag">Computational Arts</span>
                     <span class="tag">Citizen Science</span>
+                    <span class="tag">Autobiographical Memory</span>
+                    <span class="tag">Natural Language Processing</span>
                 </div>
             </div>
             <div class="publication-item">
                 <div class="item-header">
                     <div>
-                        <div class="item-title">Examining the effects of music on episodic memory encoding using immersive virtual environments</div>
+                        <div class="item-title"> <a href="https://www.canva.com/design/DAGxFQ5GjUI/9s_kXqAd-VcE6ixWsVnC5Q/view?utm_content=DAGxFQ5GjUI&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h1ee2916c81" target="_blank"> Examining the effects of music on episodic memory encoding using immersive virtual environments</a></div>
                         <div class="item-subtitle">Nawaz, S., Zhang, J., Gillies, M., Omigie, D. (2025). Poster presented at: Immersive virtual reality to understand human cognition, perception, and action workshop, Exeter, UK.</div>
                     </div>
                 </div>
                 <div class="tags">
                     <span class="tag">Virtual Reality</span>
                     <span class="tag">Episodic Memory</span>
+                    <span class="tag">Encoding</span>
                 </div>
             </div>
             <div class="publication-item">
                 <div class="item-header">
                     <div>
-                        <div class="item-title">Memory Records: Designing a citizen science fuelled archive of musical memories</div>
+                        <div class="item-title"> <a href="https://www.canva.com/design/DAGkmLRoHws/iJnjY5oiH3pzq7wmB9FIfw/view?utm_content=DAGkmLRoHws&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h896394d1de" target="_blank"> Memory Records: Designing a citizen science fuelled archive of musical memories </a> </div>
                         <div class="item-subtitle">Nawaz, S. (2025). Talk presented at: Music, Research and Activism II: Solidarities and Urgencies, Helsinki, Finland.</div>
                     </div>
                 </div>
                 <div class="tags">
                     <span class="tag">Citizen Science</span>
                     <span class="tag">Social Justice</span>
+                    <span class="tag">Decolonial Analysis</span>
                 </div>
             </div>
             <div class="publication-item">
@@ -334,31 +421,32 @@
                 </div>
                 <div class="tags">
                     <span class="tag">Virtual Reality</span>
-                    <span class="tag">Cognitive Neuroscience</span>
+                    <span class="tag">Episodic Memory</span>
+                    <span class="tag">Encoding</span>
                 </div>
             </div>
             <div class="publication-item">
                 <div class="item-header">
                     <div>
-                        <div class="item-title">How musical features relate to music-evoked autobiographical memories</div>
+                        <div class="item-title"> <a href="https://www.canva.com/design/DAGD_tlq1d4/g4iwarM364OVx67DY3hHpg/view?utm_content=DAGD_tlq1d4&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h785eb9b2f1" target="_blank">How musical features relate to music-evoked autobiographical memories </a> </div>
                         <div class="item-subtitle">Nawaz, S., Omigie, D. (2024). Talk presented at: European Society for the Cognitive Sciences of Music Conference, York, UK.</div>
                     </div>
                 </div>
                 <div class="tags">
                     <span class="tag">Autobiographical Memory</span>
-                    <span class="tag">Music Cognition</span>
+                    <span class="tag">Retrieval</span>
                 </div>
             </div>
             <div class="publication-item">
                 <div class="item-header">
                     <div>
-                        <div class="item-title">How musical features relate to music-evoked autobiographical memories</div>
+                        <div class="item-title"> <a href="https://www.canva.com/design/DAGD_tlq1d4/g4iwarM364OVx67DY3hHpg/view?utm_content=DAGD_tlq1d4&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h785eb9b2f1" target="_blank">How musical features relate to music-evoked autobiographical memories</a></div>
                         <div class="item-subtitle">Nawaz, S., Omigie, D. (2024). Talk presented at: Conference of the International Association for Empirical Aesthetics, Palma de Mallorca, Spain.</div>
                     </div>
                 </div>
                 <div class="tags">
-                    <span class="tag">Aesthetics</span>
                     <span class="tag">Autobiographical Memory</span>
+                    <span class="tag">Retrieval</span>
                 </div>
             </div>
             <div class="publication-item">
@@ -369,8 +457,9 @@
                     </div>
                 </div>
                 <div class="tags">
-                    <span class="tag">Emotional Music</span>
-                    <span class="tag">Episodic Memory</span>
+                    <span class="tag">Episodic Memory </span>
+                    <span class="tag">Encoding</span>
+                    <span class="tag">Aesthetic Emotions</span>
                 </div>
             </div>
             <div class="publication-item">
@@ -382,12 +471,214 @@
                 </div>
                 <div class="tags">
                     <span class="tag">Neuroscience</span>
-                    <span class="tag">Dopamine</span>
+                    <span class="tag">Dopamine Networks</span>
+                    <span class="tag">Functional Connectivity</span>
+                    <span class="tag">ADHD</span>
                 </div>
             </div>
         </section>
-    </div>
+        </div>
+     </div>   
+    <footer>
         <p>&copy; 2026 Safiyyah Nawaz. All rights reserved.</p>
     </footer>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('nav a').forEach((link) => {
+            link.addEventListener('mouseenter', () => {
+                const highlightVars = ['--neon-highlight1', '--neon-highlight2', '--neon-highlight3'];
+                const chosenVar = highlightVars[Math.floor(Math.random() * highlightVars.length)];
+                link.style.setProperty('--nav-hover-color', `var(${chosenVar})`);
+                link.style.setProperty('--nav-hover-border-color', `var(${chosenVar})`);
+            });
+
+            link.addEventListener('mouseleave', () => {
+                link.style.removeProperty('--nav-hover-color');
+                link.style.removeProperty('--nav-hover-border-color');
+            });
+        });
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+<script>
+const sketchContainer = document.getElementById('publications-canvas');
+
+if (sketchContainer) {
+    new p5((p) => {
+        let numCircles = 10;
+        let circles = [];
+        let neonColors = [p.color('#f33cea'), p.color('#2cfa3a'), p.color('#58f0f8')];
+
+        class Circle {
+            constructor(x,y,radius,color){
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+                this.color = color;
+            }
+
+            show() {
+                
+                
+                p.fill(this.color);
+                p.noStroke();;
+                p.ellipse(this.x, this.y, this.radius, this.radius);
+            }
+
+            move(){
+                if(this.x > p.width + this.radius){
+                    this.x = -this.radius;
+                    this.y = p.random(p.height);
+                }
+                
+                this.x += p.random(1,3);
+            }
+        }
+        p.setup = () => {
+            p.createCanvas(sketchContainer.clientWidth, sketchContainer.clientHeight);
+            for(let i =0;i <numCircles; i ++){
+                let circle = new Circle(p.random(p.width),p.random(p.height),p.random(20,60),neonColors[Math.floor(p.random(neonColors.length))]);
+                circles.push(circle);
+            }
+           
+        };
+
+        let slide = 0;
+        let moveX = 0;
+        let pulse;
+        
+        p.draw = () => {
+            p.background(0);
+            let radius = 30;
+            let neonColor = neonColors[Math.floor(p.random(neonColors.length))];
+            p.fill(255);
+            p.ellipse(p.mouseX, p.mouseY, radius + pulse, radius + pulse);
+
+            for(let i =0;i < circles.length; i++){
+                circles[i].show();  
+                circles[i].move();
+                
+            }
+
+            p.fill(255);
+            p.noStroke();
+            p.textSize(34);
+            p.textAlign(p.CENTER,p.CENTER);
+            
+            p.text("PUBLICATIONS",p.width/2,p.height/2);
+        
+    
+            moveX += p.map(p.mouseX,0,p.width, -.5, .5);
+
+            pulse = p.sin(p.frameCount/20) * 50;
+            
+        };
+
+        p.mouseClicked =() => {
+            if (circles.length > 35){
+                circles.shift();
+            } else {
+                let clickCircle = new Circle(p.mouseX,p.mouseY,p.random(20,60),neonColors[Math.floor(p.random(neonColors.length))]);
+                circles.push(clickCircle);
+            }        
+        }
+        
+
+        p.windowResized = () => {
+            p.resizeCanvas(sketchContainer.clientWidth, sketchContainer.clientHeight);
+        };
+    }, sketchContainer);
+}
+</script>
+<script>
+const presiContainer = document.getElementById('presentations-canvas');
+
+if (presiContainer) {
+    new p5((p) => {
+        let numCircles = 10;
+        let circles = [];
+        let neonColors = [p.color('#f33cea'), p.color('#2cfa3a'), p.color('#58f0f8')];
+
+        class Circle {
+            constructor(x,y,radius,color){
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+                this.color = color;
+            }
+
+            show() {
+                
+                
+                p.fill(this.color);
+                p.noStroke();;
+                p.ellipse(this.x, this.y, this.radius, this.radius);
+            }
+
+            move(){
+                if(this.x < 0 - this.radius){
+                    this.x = p.width + this.radius;
+                    this.y = p.random(p.height);
+                }
+                
+                this.x += -p.random(1,3);
+            }
+        }
+        p.setup = () => {
+            p.createCanvas(presiContainer.clientWidth, presiContainer.clientHeight);
+            for(let i =0;i <numCircles; i ++){
+                let circle = new Circle(p.random(p.width),p.random(p.height),p.random(20,60),neonColors[Math.floor(p.random(neonColors.length))]);
+                circles.push(circle);
+            }
+           
+        };
+
+        let slide = 0;
+        let moveX = 0;
+        let pulse;
+        
+        p.draw = () => {
+            p.background(0);
+            let radius = 30;
+            let neonColor = neonColors[Math.floor(p.random(neonColors.length))];
+            p.fill(255);
+            p.ellipse(p.mouseX, p.mouseY, radius + pulse, radius + pulse);
+
+            for(let i =0;i < circles.length; i++){
+                circles[i].show();  
+                circles[i].move();
+                
+            }
+
+            p.fill(255);
+            p.noStroke();
+            p.textSize(34);
+            p.textAlign(p.CENTER,p.CENTER);
+            
+            p.text("PRESENTATIONS",p.width/2,p.height/2);
+        
+    
+            moveX += p.map(p.mouseX,0,p.width, -.5, .5);
+
+            pulse = p.sin(p.frameCount/20) * 50;
+            
+        };
+
+        p.mouseClicked =() => {
+            if (circles.length > 35){
+                circles.shift();
+            } else {
+                let clickCircle = new Circle(p.mouseX,p.mouseY,p.random(20,60),neonColors[Math.floor(p.random(neonColors.length))]);
+                circles.push(clickCircle);
+            }        
+        }
+        
+
+        p.windowResized = () => {
+            p.resizeCanvas(presiContainer.clientWidth, presiContainer.clientHeight);
+        };
+    }, presiContainer);
+}
+</script>
 </body>
 </html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safiyyah Nawaz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <style>
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            
+        }
+
+        :root {
+            --primary-color: #c7394c;
+            --secondary-color: #dd8136;
+            --accent-color: #cfa659;
+            --text-color: #333333;
+            --light-bg: #f8f9fa;
+            --border-color: #e0e0e0;
+            --background-color: #ffffff;
+            --white: #ffffff;
+            --neon-highlight1: #f33cea;
+            --neon-highlight2: #2cfa3a;
+            --neon-highlight3: #58f0f8;
+            --neon-highlight4: #ff9a1f;
+        }
+
+        body {
+            font-family: "Kantumruy Pro", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.45;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            
+        }
+
+        a {
+            color: var(--neon-highlight1);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--neon-highlight3);
+        }
+
+        .kantumruy-pro {
+            font-family: "Kantumruy Pro", sans-serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+            font-weight: 400;
+        }
+
+        .doodles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background-image: url("images/half_circle.png");
+            background-origin:border-box;
+            background-size: 50px 50px;
+            background-repeat: no-repeat;
+            object-fit: cover;
+            padding: 25px 25px;
+        }
+
+        nav {
+            background: #ffffffe6;
+            padding: 1.5rem 0rem;
+            max-height: 5rem;
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .logo {
+            padding:0rem 0rem 0rem 0rem;
+            width: 100%;
+            max-width: 90%;
+            justify-content: flex-start;
+            object-fit: contain;
+            width: 3rem;
+            height: 3rem;
+        }
+
+        .logo:hover {
+            rotate: 360deg;
+            transition: rotate 1s ease-in-out;
+        }
+
+        nav ul {
+            list-style: none;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: flex-end;
+            gap: 3rem;
+            width: 100%;
+            max-width: 90%;
+            margin: 0;
+            padding: 3rem;
+        }
+
+        nav a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 0.25rem;
+        }
+
+        nav a:hover {
+            color: var(--nav-hover-color, var(--neon-highlight1));
+            border-bottom-color: var(--nav-hover-border-color, var(--neon-highlight1));
+        }
+
+        .title {
+            padding: 1rem 1rem;
+            align-items: center;
+            display: flex;
+        }
+
+        .title h3 {
+            font-size: 2rem;
+            font-weight: 500;
+        }
+        
+
+        .posters {
+            display:flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            
+        }
+
+         .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 1rem 1rem;
+            
+        }
+
+        .event-poster {
+            background-color: transparent;
+            width: 420px;
+            height: 594px;
+            perspective: 1000px;
+        }
+
+        .event-poster-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .event-poster:hover .event-poster-inner {
+            transform: rotateY(180deg);
+        }
+
+        .event-poster-front, .event-poster-back {
+            position: absolute;
+            width: 100%;
+            height:100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .event-poster-front {
+            background-color: #bbb;
+            color:black;
+        }
+
+        .event-poster-back {
+            background-color: #000000;
+            color:white;
+            transform: rotateY(180deg);
+            justify-content: center;
+            text-align: left;
+            padding: 2rem;
+        }
+
+        .event-poster-back p {
+            text-align: justify;
+        }
+
+        .event-poster img {
+            width: 420px;
+            height: 594px;
+        }
+
+        section {
+            align-self: center;
+            padding: 1rem;
+            max-width: 100%;
+        }
+
+        footer {
+            background: var(--neon-highlight3);
+            color: var(--black);
+            padding: 1.5rem;
+            text-align: center;
+            margin-top: 3rem;
+            font-size: 0.95rem;
+        }
+
+        footer a {
+            color: var(--black);
+            text-decoration: none;
+            margin: 0 0.5rem;
+            transition: opacity 0.3s;
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+        }
+    </style>
+
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="images/half_circle.png" style="width: 3rem; height: 3rem">
+        </div>
+        <ul>
+            <li><a href="index.html"><i>Home</i></a></li>
+            <li><a href="research.html"><i>Research</i></a></li>
+            <li><a href="publications.html"><i>Publications</i></a></li>
+            <li><a href="public-engagement.html"><i>Public Engagement</i></a></li>
+            <!-- <li><a href="portfolio.html"><i>Portfolio</i></a></li> -->
+        </ul>
+    </nav>
+
+     <div class="container">
+        <div class="title">
+            <h3>EVENT POSTERS</h3>
+        </div>
+
+        <div class="posters">
+            <div class="event-poster">
+                <div class="event-poster-inner">
+                    <div class="event-poster-front">
+                        <img src="images/viva_poster.png">
+                    </div>
+                    <div class="event-poster-back">
+                        <h1><i>VIVA POSTER</i></h1>
+                        <br>
+                        <p> This poster shows summary figures of the four experimental chapters of my PhD thesis: I) showing how musico-acoustic features relate to memory qualities, II-III) how music-listening features relate to memory outcomes in a VR encoding paradigm and IV) how music-listening features relate to memory encoding and retrieval effects from an experience sampling paradigm. A representative way of summing up 3 years of PhD blood, sweat, tears and science into an A3 poster. </p>
+                        <br>
+                        <p>You might have to read my thesis to find out more ;)</p>
+                    </div>
+                </div>                
+            </div>
+            <div class="event-poster">
+                <div class="event-poster-inner">
+                    <div class="event-poster-front">
+                        <img src="images/Sofar BHM Poster_RDU.png">
+                    </div>
+                    <div class="event-poster-back">
+                        <h1><i>SOFAR RDU BLACK HISTORY MONTH POSTER</i></h1>
+                        <br>
+                        <p>I created this poster for Sofar RDU's Black History Month show in 2022, hosted at Black-owned bookshop Rofhiwa Book Cafe in Durham, North Carolina. Using Black History Month colours, it depicts a lively band playing a concert. </p>
+                    </div>
+                </div>                
+            </div>
+            <div class="event-poster">
+                <div class="event-poster-inner">
+                    <div class="event-poster-front">
+                        <img src="images/10MarPoster.jpg">
+                    </div>
+                    <div class="event-poster-back">
+                        <h1><i>SOFAR STAMP POSTER</i></h1>
+                        <br>
+                        <p>For this poster, I took scans from my father's 40+ year stamp collection and created a digital collage. All text and image on the poster is derived from digital copies of stamp materials.</p>
+                    </div>
+                </div>                
+            </div>   
+            <div class="event-poster">
+                <div class="event-poster-inner">
+                    <div class="event-poster-front">
+                        <img src="images/June 15 Poster copy.png">
+                    </div>
+                    <div class="event-poster-back">
+                        <h1><i>SOFAR ANDY WARHOL POSTER</i></h1>
+                        <br>
+                        <p>If you couldn't tell, this poster is heavily inspired by Andy Warhol's famous Campbell's soup cans paintings. Not sure if there's much else to say other than that. It was fun to make. </p>
+                    </div>
+                </div>                
+            </div>
+            <div class="event-poster">
+                <div class="event-poster-inner">
+                    <div class="event-poster-front">
+                        <img src="images/14Sep2019Poster-01.png">
+                    </div>
+                    <div class="event-poster-back">
+                        <h1><i>SOFAR NC TRIBUTE POSTER</i></h1>
+                        <br>
+                        <p>This was the last poster I made for Sofar RDU before moving to London in 2019. It was a tribute to North Carolina's "Triangle" (referring to the areas encompassed between Raleigh, Durham and Chapel Hill), where I imagined what a functional public transportation system might look like (you're welcome, city planners). Perhaps it's a long shot but it was fun to dream of a better-connected reality for North Carolinians. </p>
+                    </div>
+                </div>                
+            </div>                
+            <div class="event-poster">
+                <div class="event-poster-inner">
+                    <div class="event-poster-front">
+                        <img src="images/17Aug2019SofarPoster.png">
+                    </div>
+                    <div class="event-poster-back">
+                        <h1><i>SOFAR BAUHAUS POSTER</i></h1>
+                        <br>
+                        <p>This poster is inspired by the Bauhaus design tradition - I remember at the time, I had recently attended an exhibition celebrating 100 years of Bauhaus and I was obsessed. Its since become highly influential in my art and design style. One of my favorite posters. </p>
+                    </div>
+                </div>                
+            </div>
+        </div>
+     </div>
+</body>
+ <footer>
+        <p>
+            &copy; 2026 Safiyyah Nawaz. All rights reserved.
+        </p>
+   </footer>
+
+   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('nav a').forEach((link) => {
+            link.addEventListener('mouseenter', () => {
+                const highlightVars = ['--neon-highlight1', '--neon-highlight2', '--neon-highlight3'];
+                const chosenVar = highlightVars[Math.floor(Math.random() * highlightVars.length)];
+                link.style.setProperty('--nav-hover-color', `var(${chosenVar})`);
+                link.style.setProperty('--nav-hover-border-color', `var(${chosenVar})`);
+            });
+
+            link.addEventListener('mouseleave', () => {
+                link.style.removeProperty('--nav-hover-color');
+                link.style.removeProperty('--nav-hover-border-color');
+            });
+        });
+    });
+</script>
+
+</html>

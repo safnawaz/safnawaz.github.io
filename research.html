@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects — Safiyyah Nawaz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            
+        }
+
+        :root {
+            --primary-color: #c7394c;
+            --secondary-color: #dd8136;
+            --accent-color: #cfa659;
+            --text-color: #333333;
+            --light-bg: #f8f9fa;
+            --border-color: #e0e0e0;
+            --background-color: #ffffff;
+            --white: #ffffff;
+            --neon-highlight1: #f33cea;
+            --neon-highlight2: #2cfa3a;
+            --neon-highlight3: #58f0f8;
+            --neon-highlight4: #ff9a1f;
+        }
+
+        html, body {
+            height: auto;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        body {
+            font-family: "Kantumruy Pro", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.45;
+            color: var(--text-color);
+            background-color: black;
+        }
+
+        a {
+            color: var(--neon-highlight1);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--neon-highlight3);
+        }
+
+        .kantumruy-pro {
+            font-family: "Kantumruy Pro", sans-serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+            font-weight: 400;
+        }
+
+        .doodles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background-image: url("images/half_circle.png");
+            background-origin:border-box;
+            background-size: 50px 50px;
+            background-repeat: no-repeat;
+            object-fit: cover;
+            padding: 25px 25px;
+        }
+
+        nav {
+            background: black;
+            padding: 1.5rem 0rem;
+            max-height: 5rem;
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0rem;
+            z-index: 150;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .logo {
+            padding:0rem 0rem 0rem 0rem;
+            transform: rotate(180deg);
+            width: 100%;
+            max-width: 90%;
+            justify-content: flex-start;
+            object-fit: contain;
+            width: 3rem;
+            height: 3rem;
+        }
+
+        .logo:hover {
+            rotate: 360deg;
+            transition: rotate 1s ease-in-out;
+        }
+
+        nav ul {
+            list-style: none;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: flex-end;
+            gap: 3rem;
+            width: 100%;
+            max-width: 90%;
+            margin: 0;
+            padding: 3rem;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 0.25rem;
+        }
+
+        nav a:hover {
+            color: var(--nav-hover-color, var(--neon-highlight1));
+            border-bottom-color: var(--nav-hover-border-color, var(--neon-highlight1));
+        }
+
+        .container {
+            max-width: 95%;
+            margin: 0 auto;
+            padding: 0 1rem 2rem;
+        }
+
+        section {
+            padding: 0.5rem 0 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        section h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            font-weight: 400;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .project-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .project-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .carousel-shell {
+            position: relative;
+            width: min(92%, 1160px);
+            max-width: 1160px;
+            margin: 0.5rem auto 1.25rem;
+            height: auto;
+            max-height: 74vh;
+        }
+
+        .carousel {
+            width: 100%;
+            height: auto;
+            max-height: 74vh;
+            position: relative;
+            overflow: hidden;
+            background: #ffffffef;
+            border-radius: 18px;
+            border: 5px solid #2cfa3a;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.35s ease;
+            height: auto;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: auto;
+            max-height: 74vh;
+            padding: 0.6rem 0.85rem 0.85rem;
+            box-sizing: border-box;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .project-item {
+            display: grid;
+            grid-template-columns: minmax(200px, 290px) minmax(0, 1fr);
+            gap: 0.85rem;
+            align-items: start;
+            border-top: 2px dashed var(--neon-highlight1);
+            min-height: 0;
+        }
+
+        .project-item > .project-image-wrap {
+            grid-row: span 2;
+        }
+
+        .project-image-wrap {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0.4rem 0.2rem 0.2rem;
+        }
+
+        .carousel-image {
+            display: block;
+            width: auto;
+            max-width: min(100%, 240px);
+            max-height: 220px;
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+            border-radius: 16px;
+            background: transparent;
+            margin: 0 auto 0.5rem;
+        }
+
+        .project-content {
+            min-width: 0;
+            grid-column: 2;
+            padding: 0.45rem 0.2rem 0.2rem 0.1rem;
+        }
+
+       
+        .carousel-button {
+            position: absolute;
+            top: 50%;            
+            z-index: 3;
+            pointer-events: auto;
+            background: rgb(255, 255, 255);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+            transition: transform 0.2s ease;
+        }
+
+        .carousel-button.prev {
+            left: -4rem;
+        }
+
+        .carousel-button.next {
+            right: -4rem;
+        }
+
+        .carousel-button:hover {
+            transform: translateY(-3px);
+            background: #000000;
+            border: 2px dashed #2cfa3a;
+            color:#ffffff;
+        }
+
+        .carousel-button:disabled {
+            opacity: 0.4;
+            cursor: default;
+        }
+
+        .carousel-counter {
+            text-align: right;
+            color: #2cfa3a;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .project-content .item-description {
+            margin-top: 0.25rem;
+        }
+
+        .project-content .tags {
+            margin-top: 0.35rem;
+        }
+
+        .project-resources {
+            grid-column: 1 / -1;
+            display: block;
+            margin-top: 0.25rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--border-color);
+            color: #555;
+        }
+
+        .resource-section {
+            margin-top: 1rem;
+        }
+
+        .resource-section:first-child {
+            margin-top: 0.75rem;
+        }
+
+        .resource-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: black;
+            margin-bottom: 0.5rem;
+
+        }
+
+        .resource-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+            color: #555;
+        }
+
+        .resource-list li {
+            margin-bottom: 0.6rem;
+            line-height: 1.4;
+            font-size: .9rem;
+        }
+
+        .resource-list li em {
+            font-style: italic;
+            color: #333;
+        }
+
+         .research-canvas-wrap {
+            margin-top: 1rem;
+            padding: 0rem;
+        }
+
+        #research-canvas {
+            width: 100%;
+            height: 5%;
+            display: block;
+            border-radius: 0px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .item-header {
+            font-style: italic;
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            margin-bottom: 0.25rem;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            
+        }
+
+        .item-title {
+            font-size: clamp(1.05rem, 1.5vw, 1.45rem);
+            text-align: center;
+            font-weight: 800;
+            color: black;
+            padding: 0.25rem 0.5rem;
+        }
+
+        .item-subtitle {
+            color: var(--neon-highlight1);
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-align: center;
+            margin-top: 0.2rem;
+        }
+
+        .item-date {
+            color: #888;
+            font-size: 0.95rem;
+            font-style: italic;
+        }
+
+        .item-description {
+            color: #666;
+            margin-top: 0.2rem;
+            line-height: 1.25;
+            font-size: 0.95rem;
+            text-align: justify;
+        }
+
+        .tags {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            padding-top: 0.3rem;
+        }
+
+        .tag {
+            background: #000000;
+            color: var(--white);
+            padding: 0.2rem 0.65rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 2px solid #000000;
+        }
+
+        .tag:hover {
+            background: var(--nav-hover-color, var(--neon-highlight3));
+            color: #000000;
+        }
+
+        .tag-sub {
+            background: #525252;
+            color: var(--white);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 1rem;
+            border: 2px solid #000000;
+        }
+
+        .tag-sub:hover {
+            background: var(--nav-hover-color, var(--neon-highlight1));
+        }
+
+        .collapsible {
+            background-color: var(--neon-highlight2);
+            cursor: pointer;
+            padding: 0.5rem;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: black;
+        }
+
+        /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+        .active, .collapsible:hover {
+        background-color: var(--neon-highlight1);
+        }
+
+        /* Style the collapsible content. Note: hidden by default */
+        .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+        }
+
+         .collapsible:after {
+        content: '\02795'; /* Unicode character for "plus" sign (+) */
+        font-size: 15px;
+        padding-top: 0.2rem;
+        color: white;
+        float: right;
+        margin-left: 5px;
+        }
+
+        .active:after {
+        content: "\2796"; /* Unicode character for "minus" sign (-) */
+        }
+
+        .tooltip {
+            position: relative;
+            cursor: pointer;
+            text-decoration: underline dotted;
+            display: inline-block;
+            vertical-align: baseline;
+        }
+
+        .tooltip .tooltip-content {
+            color: white;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 120%;
+            background: rgba(0,0,0,0.85);
+            padding: 8px;
+            border-radius: 8px;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 260px;
+        }
+        .tooltip .tooltip-content img {
+            display: block;
+            max-width: 220px;
+            max-height: 160px;
+            width: auto;
+            height: auto;
+            border-radius: 6px;
+        }
+        .tooltip-caption {
+            margin-top: 6px;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+        .tooltip:hover .tooltip-content,
+        .tooltip:focus .tooltip-content {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .project-item {
+                grid-template-columns: 1fr;
+            }
+
+            .project-image-wrap {
+                justify-content: flex-start;
+            }
+
+            .carousel-image {
+                max-width: 180px;
+            }
+
+            .carousel-slide {
+                padding: 0.6rem 0.7rem 0.8rem;
+            }
+        }
+
+        footer {
+            background: var(--neon-highlight3);
+            color: var(--black);
+            padding: 1rem;
+            text-align: center;
+            margin-top: 3rem;
+            font-size: 0.95rem;
+        }
+
+        footer a {
+            color: var(--black);
+            text-decoration: none;
+            margin: 0 0.5rem;
+            transition: opacity 0.3s;
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+   <nav>
+        <div class="logo">
+            <img src="images/half_circle.png" style="width: 3rem; height: 3rem; filter: invert(1)">
+        </div>
+        <ul>
+            <li><a href="index.html"><i>Home</i></a></li>
+            <li><a href="research.html"><i>Research</i></a></li>
+            <li><a href="publications.html"><i>Publications</i></a></li>
+            <li><a href="public-engagement.html"><i>Public Engagement</i></a></li>
+            <!-- <li><a href="portfolio.html"><i>Portfolio</i></a></li> -->
+        </ul>
+    </nav>
+
+    <div class="container">
+
+        <section>
+        <!-- <div class="research-canvas-wrap">
+                <div id="research-canvas" aria-label="p5.js canvas placeholder"></div>
+        </div> -->
+            <div class="carousel-shell">
+                <button class="carousel-button prev" type="button" aria-label="Previous project">‹</button>
+                <div class="carousel">
+                    <div class="carousel-track">
+                    <div class="carousel-slide">
+                        <div class="item-header">
+                            <div class="item-title">MUSIC-EVOKED AUTOBIOGRAPHICAL MEMORIES</div>                              
+                            <hr class="dotted">
+                        </div> 
+                        
+                        <div class="project-item">                            
+                            <div class="project-image-wrap">
+                                <img src="images/MR.png" alt="Project 1 screenshot" class="carousel-image" style="align-items: flex-start" />
+                                <div class="item-subtitle"><i><b>Collaborators:</b> Dr Diana Omigie (supervision); Dr Manuel Anglada-Tort (NLP); Felix Noble (NLP), James Brown (MSc research), Cooper Overton (MSc research), Niki K (web development, Memory Records)</i></div>         
+                            </div>
+                            <div class="project-content">
+                               
+                                <div class="item-description">
+                                    <p>Music-evoked autobiographical memories (or MEAMs, if you're in the know) are personal memories that are evoked by or closely associated with a piece of music. Think of a song that takes you back to an important event in your life, like a wedding or celebration, or a song that always reminds you of a time of your life or loved one - these are MEAMs.</p>
+                                    <br>
+                                    <p>My research explores how different characteristics of the music, the listener, and the music-listening context contribute to how and what kinds of memories are recalled. For example, by analysing the auditory features of memory-evoking music, I found that the energeticness/acousticness of the music is closely related to the kinds of memories recalled. More acoustic songs are associated with more vivid, important, emotionally complex memories, whereas more energetic songs are associated with memories that are recalled faster, and are more social and energetic.</p>
+                                    <br>
+                                    <p>Recently, I've been working on developing a website where anyone can share their own personal musical memories and view others', called <a href="https:memoryrecords.xyz" target="_blank">Memory Records</a>. Informed by citizen science and decolonial approaches to research, it will function as a living archive and open research tool. Alongside this, we are developing a pipeline that uses natural language processing to analyse written descriptions of MEAMs at scale.</p>
+                                                                       
+                                </div>
+                                <div class="tags">                                    
+                                    <span class="tag">Autobiographical Memory</span>
+                                    <span class="tag">Citizen Science</span>
+                                    <span class="tag">Decolonial Approaches</span>
+                                    <span class="tag">Natural Language Processing</span>
+                            </div>   
+                                                        
+                            </div>
+
+                            
+                            
+                            <div class="project-resources">
+                                <div class="resource-section">
+                                        <div class="collapsible">Publications</div>
+                                        <div class="content">                                        
+                                            <ul class="resource-list">
+                                                <li><b>Nawaz, S.</b>, & Omigie, D. (2025). Qualities of music-evoked autobiographical memories are associated with auditory features of the memory-evoking music. Plos one, 20(8), e0329072. <a href="https://doi.org/10.1371/journal.pone.0329072" target="_blank">https://doi.org/10.1371/journal.pone.0329072</a></li>  
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="resource-section">
+                                        <div class="collapsible">Presentations</div>
+                                        <div class="content">                                        
+                                            <ul class="resource-list">
+                                                <li><b>Nawaz, S.</b> (2025). Memory Records: A musical memory archive fueled by computing, citizen science and global participation. Talk presented at: Digital Music Research Network Workshop 2025, London, UK</li>
+                                                <li><b>Nawaz, S.</b> (2025). Memory Records: Designing a citizen science fuelled archive of musical memories. Talk presented at: Music, Research and Activism II: Solidarities and Urgencies, Helsinki, Finland</li>
+                                                <li><b>Nawaz, S.</b>, Omigie, D. (2024). How musical features relate to music-evoked autobiographical memories. Talk presented at: European Society for the Cognitive Sciences of Music Conference, York, UK</li>
+                                                <li><b>Nawaz, S.</b>, Omigie, D. (2024).  How musical features relate to music-evoked autobiographical memories. Talk presented at: Conference of the International Association for Empirical Aesthetics, Palma de Mallorca, Spain</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="carousel-slide">
+                        <div class="item-header">
+                            <div class="item-title">MUSIC-SUPPORTED EPISODIC MEMORY ENCODING: WHAT-WHERE-WHEN MEMORY</div>                              
+                        </div> 
+                        
+                        <div class="project-item">                            
+                            <div class="project-image-wrap">
+                                <img src="images/WWW.png" alt="Project 1 screenshot" class="carousel-image" style="align-items: flex-start" />
+                                <div class="item-subtitle"><i><b>Collaborators:</b>  Dr Diana Omigie (supervision); Ellen Murphy (MSc research); Eimear North (MSc research)</i></div>         
+                            </div>
+                            <div class="project-content">
+                               
+                                <div class="item-description">
+                                    <p>Music-supported episodic memory is a term I use to describe the phenomenon of music influencing the way a memory for an event or experience is formed. What I am interested in better understanding is how the presence of music during an event, its objective features, and the listener's experience of the music all contribute to memory success.</p>
+                                    <br>
+                                    <p>In my MSc work, I developed an online paradigm in  <span class="tooltip">PsychoPy<span class="tooltip-content">Python based experiment software</span></span> based on the <i>What-Where-When</i> task, which assesses episodic memory by asking participants to encode and then recall <i>what</i> objects they moved, </i>where</i> they moved them to, and in what order (<i>when</i>). Participants dragged items on the screen to different 'hiding spots' in the presence of different kinds of emotional music. </p>
+                                    <br>
+                                    <p>We found that calming, positive music was the most beneficial for accurate memory, and that negative emotional responses impaired memory. In a follow-up study using the same paradigm, we found that, in the presence of better-liked music, memory for <i>what</i> was moved, was improved. </p>
+                                                                       
+                                </div>
+                            <div class="tags">                                    
+                                   <span class="tag">Episodic Memory</span>
+                                    <span class="tag">What-Where-When Memory</span>
+                                    <span class="tag">Aesthetic Emotions</span>   
+                            </div>                         
+                            </div>
+
+                               
+                            
+                            <div class="project-resources">
+                                <div class="resource-section">
+                                        <div class="collapsible">Publications</div>
+                                        <div class="content">                                        
+                                            <ul class="resource-list">
+                                                <li>Murphy, E., North, E.,<b>Nawaz, S.</b>, & Omigie, D. (2023). The influence of music liking on episodic memory for rich spatiotemporal contexts. Memory, 31(5), 589–604. <a href="https://doi.org/10.1080/09658211.2022.2154367" target="_blank">https://doi.org/10.1080/09658211.2022.2154367</a></li>
+                                                <li><b>Nawaz, S.</b>, & Omigie, D. (2023). Investigating the interaction of pleasantness and arousal and the role of aesthetic emotions on episodic memory using a musical what-where-when paradigm. Cognition and Emotion, 37(2), 320–328. <a href="https://doi.org/10.1080/02699931.2023.2185206" target="_blank">https://doi.org/10.1080/02699931.2023.2185206</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="resource-section">
+                                        <div class="collapsible">Presentations</div>
+                                        <div class="content">                                        
+                                            <ul class="resource-list">
+                                               <li><b>Nawaz, S.</b>, Omigie, D. (2021). Characterising the influence of emotional music on episodic memory using a novel ecologically valid paradigm. Poster presented at: Conference of the International Association for Empirical Aesthetics, virtual meeting.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                   </div>
+
+                   <!-- VR SLIDE -->
+                   <div class="carousel-slide">
+                        <div class="item-header">
+                            <div class="item-title">MUSIC-SUPPORTED EPISODIC AUTOBIOGRAPHICAL MEMORY: VIRTUAL REALITY</div>                              
+                        </div> 
+                        
+                        <div class="project-item">                            
+                            <div class="project-image-wrap">
+                                <img src="images/VR.jpeg" alt="Project 1 screenshot" class="carousel-image" style="align-items: center" />
+                                <div class="item-subtitle"><i><b>Collaborators:</b>  Dr. Diana Omigie (supervision), Ju Zhang (Unity build), Dr Marco Gillies (supervision)</i></div>         
+                            </div>
+                            <div class="project-content">
+                               
+                                <div class="item-description">
+                                    <p>I also use virtual reality to explore music-supported memory, as it can simulate realistic, immersive experiences of music-listening. Using 360-degree videos from the <a href="https://www.uni-osnabrueck.de/fb8/psychologie/fachgebiete/allgemeine-psychologie-i/luvre" target="_blank"> Library for Universal Virtual Reality Experiments</a>, we created a virtual reality 'holiday', where participants spent a day of sightseeing in different scenes while listening to different kinds of music.</p>
+                                    <br>
+                                    <p>At two time points after the VR experience, I tested their memory to determine how features of the music - how positive, energetic, familiar and well-liked it is, influence memory. We saw that the <span class="tooltip">valence<span class="tooltip-content">how positive something is: lower valence = more negative, higher-valence = more positive</span></span> of the music plays a key role in memory formation, dependent on how familiar the music is to the listener. </p>
+                                    <br>
+                                    <p>We also ran the study while collecting real-time brain data using <span class="tooltip">EEG<span class="tooltip-content">electroencephalography, a neuroscience method that records the electrical activity of the brain</span></span>, to examine brain states relevant during music-supported encoding. Manuscripts are in preparation so check back for updates! </p>                              
+                                </div>
+                             <div class="tags">                                    
+                                   <span class="tag">Virtual Reality</span>
+                                    <span class="tag">Episodic Autobiographical Memory</span>
+                                    <span class="tag">EEG</span>
+                            </div>                    
+                            </div>
+
+                             
+                            
+                            <div class="project-resources">                                
+                                    <div class="resource-section">
+                                        <div class="collapsible">Presentations</div>
+                                        <div class="content">                                        
+                                            <ul class="resource-list">
+                                               <li><b>Nawaz, S.</b>, Zhang, J., Gillies, M., Omigie, D. (2025). Examining the effects of music on episodic memory encoding using immersive virtual environments. Poster presented at: Immersive virtual reality to understand human cognition, perception, and action workshop, Exeter, UK.</li>
+                                                <li><b>Nawaz, S.</b>, Zhang, J., Gillies, M., Omigie, D. (2024). Examining the effects of music on episodic memory encoding using immersive virtual environments. Poster presented at: British Association for Cognitive Neuroscience Conference, London, UK</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                   </div>
+
+                   <!-- ESM SLIDE -->
+                    <div class="carousel-slide">
+                        <div class="item-header">
+                            <div class="item-title">MUSIC-SUPPORTED EPISODIC AUTOBIOGRAPHICAL MEMORY: EXPERIENCE SAMPLING</div>                              
+                        </div> 
+                        
+                        <div class="project-item">                            
+                            <div class="project-image-wrap">
+                                <img src="images/esm.png" alt="Project 1 screenshot" class="carousel-image" style="align-items: center" />
+                                <div class="item-subtitle"><i><b>Collaborators:</b>  Dr. Diana Omigie (supervision)</i></div>         
+                            </div>
+                            <div class="project-content">
+                               
+                                <div class="item-description">
+                                    <p>To better understand how music influences memory, as it does in everyday life, we use a method called <i>experience sampling</i>, which samples the experiences of participants as they go about their daily lives. For this study, we sent texts to participants at random moments throughout the day and asked them to tell us information about whatever events may be happening, and the music they hear.</p>
+                                    <br>
+                                    <p>We were then able to test their memory for those recorded events two weeks later, and analyse how different aspects of the music (auditory features, emotional expression) and the listener (familiarity to the music, attention paid to it) support or interfere with memory.</p>
+                                    <br>
+                                    <p>We found several effects, for example that music with lyrics impairs memory formation and that the attention paid to the music during the initial event supports memory when the music is used as a memory cue. Manuscript in preparation so check back for more!</p>
+                                </div>
+                                                        
+                            </div>
+
+                              
+                            
+                            <div class="project-resources">                                
+                                    <div class="resource-section">
+                                        <div class="collapsible">Presentations</div>
+                                        <div class="content">                                        
+                                            <ul class="resource-list">
+                                               <li><b>Nawaz, S.</b>, Omigie, D. (2026). Examining Music's Influence on the Encoding and Retrieval of Episodic Autobiographical Memories in Everyday Life. Poster presented at: SEMPRE 2026 PGR/ECR Conference, Cambridge, UK</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                   </div>                
+                    </div>
+                </div>
+                <button class="carousel-button next" type="button" aria-label="Next project">›</button>
+                <div class="carousel-counter">1 / 3</div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Safiyyah Nawaz. All rights reserved.</p>
+    </footer>
+    <script>
+        (function() {
+            const track = document.querySelector('.carousel-track');
+            const slides = document.querySelectorAll('.carousel-slide');
+            const prevButton = document.querySelector('.carousel-button.prev');
+            const nextButton = document.querySelector('.carousel-button.next');
+            const counter = document.querySelector('.carousel-counter');
+            let currentIndex = 0;
+
+            function updateCarousel() {
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                counter.textContent = `${currentIndex + 1} / ${slides.length}`;
+            }
+
+            prevButton.addEventListener('click', function() {
+                currentIndex = currentIndex > 0 ? currentIndex - 1 : slides.length - 1;
+                updateCarousel();
+            });
+
+            nextButton.addEventListener('click', function() {
+                currentIndex = currentIndex < slides.length - 1 ? currentIndex + 1 : 0;
+                updateCarousel();
+            });
+
+            updateCarousel();
+        })();
+    </script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('nav a').forEach((link) => {
+            link.addEventListener('mouseenter', () => {
+                const highlightVars = ['--neon-highlight1', '--neon-highlight2', '--neon-highlight3'];
+                const chosenVar = highlightVars[Math.floor(Math.random() * highlightVars.length)];
+                link.style.setProperty('--nav-hover-color', `var(${chosenVar})`);
+                link.style.setProperty('--nav-hover-border-color', `var(${chosenVar})`);
+            });
+
+            link.addEventListener('mouseleave', () => {
+                link.style.removeProperty('--nav-hover-color');
+                link.style.removeProperty('--nav-hover-border-color');
+            });
+        });
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+<script>
+const sketchContainer = document.getElementById('research-canvas');
+
+if (sketchContainer) {
+    new p5((p) => {
+        let numCircles = 10;
+        let circles = [];
+        let neonColors = [p.color('#f33cea'), p.color('#2cfa3a'), p.color('#58f0f8')];
+
+        class Circle {
+            constructor(x,y,radius,color){
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+                this.color = color;
+            }
+
+            show() {
+                
+                
+                p.fill(this.color);
+                p.noStroke();;
+                p.ellipse(this.x, this.y, this.radius, this.radius);
+            }
+
+            move(){
+                if(this.x > p.width - this.radius){
+                    this.x = this.radius;
+                    this.y = p.random(p.height);
+                }
+                
+                this.x += p.random(1,3);
+            }
+        }
+        p.setup = () => {
+            p.createCanvas(sketchContainer.clientWidth, sketchContainer.clientHeight);
+            for(let i =0;i <numCircles; i ++){
+                let circle = new Circle(p.random(p.width),p.random(p.height),p.random(20,60),neonColors[Math.floor(p.random(neonColors.length))]);
+                circles.push(circle);
+            }
+           
+        };
+
+        let slide = 0;
+        let moveX = 0;
+        let pulse;
+        
+        p.draw = () => {
+            p.background(0);
+            let radius = 30;
+            let neonColor = neonColors[Math.floor(p.random(neonColors.length))];
+            p.fill(255);
+            p.ellipse(p.mouseX, p.mouseY, radius + pulse, radius + pulse);
+
+            for(let i =0;i < circles.length; i++){
+                circles[i].show();  
+                circles[i].move();
+                
+            }
+
+            p.fill(255);
+            p.noStroke();
+            p.textSize(34);
+            p.textAlign(p.CENTER,p.CENTER);
+            
+            p.text("RESEARCH PROJECTS",p.width/2,p.height/2);
+        
+    
+            moveX += p.map(p.mouseX,0,p.width, -.5, .5);
+
+            pulse = p.sin(p.frameCount/20) * 50;
+            
+        };
+
+        p.mouseClicked =() => {
+            if (circles.length > 35){
+                circles.shift();
+            } else {
+                let clickCircle = new Circle(p.mouseX,p.mouseY,p.random(20,60),neonColors[Math.floor(p.random(neonColors.length))]);
+                circles.push(clickCircle);
+            }        
+        }
+        
+
+        p.windowResized = () => {
+            p.resizeCanvas(sketchContainer.clientWidth, sketchContainer.clientHeight);
+        };
+    }, sketchContainer);
+}
+</script>
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+        content.style.display = "none";
+        } else {
+        content.style.display = "block";
+        }
+    });
+    } 
+
+    
+</script>
+</body>
+</html>
