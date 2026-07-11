@@ -21,7 +21,7 @@
             --border-color: #e0e0e0;
             --background-color: #ffffff;
             --white: #ffffff;
-            --neon-highlight1: #f33cea;
+            --neon-highlight1: #f452ec;
             --neon-highlight2: #2cfa3a;
             --neon-highlight3: #58f0f8;
             --neon-highlight4: #ff9a1f;
@@ -381,7 +381,8 @@
 
         #research-canvas {
             width: 100%;
-            height: 5%;
+            height: clamp(180px, 24vh, 280px);
+            max-height: 320px;
             display: block;
             border-radius: 0px;
             overflow: hidden;
@@ -939,7 +940,7 @@ if (sketchContainer) {
     new p5((p) => {
         let numCircles = 10;
         let circles = [];
-        let neonColors = [p.color('#f33cea'), p.color('#2cfa3a'), p.color('#58f0f8')];
+        let neonColors = [p.color('#f452ec'), p.color('#2cfa3a'), p.color('#58f0f8')];
 
         class Circle {
             constructor(x,y,radius,color){

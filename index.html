@@ -24,7 +24,7 @@
             --border-color: #e0e0e0;
             --background-color: #ffffff;
             --white: #ffffff;
-            --neon-highlight1: #f33cea;
+            --neon-highlight1: #f452ec;
             --neon-highlight2: #2cfa3a;
             --neon-highlight3: #58f0f8;
             --neon-highlight4: #ff9a1f;
@@ -32,7 +32,7 @@
 
         body {
             font-family: "Kantumruy Pro", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-            line-height: 1.45;
+            line-height: 1.25;
             color: var(--text-color);
             background-color: var(--background-color);   
             overflow: auto;         
@@ -131,13 +131,20 @@
         .nav-toggle[aria-expanded="true"] .hamburger { background: transparent; }
         .nav-toggle[aria-expanded="true"] .hamburger::before { transform: translateY(7px) rotate(45deg); }
         .nav-toggle[aria-expanded="true"] .hamburger::after { transform: translateY(-7px) rotate(-45deg); }
-
-        .logo {
+        
+        .logo-and-name {
             padding:0rem 0rem 0rem 0rem;
             width: 100%;
-            max-width: 90%;
+            max-width: 30%;
+            display:flex;
+            align-items: center;
+            flex-direction: row;
             justify-content: flex-start;
             object-fit: contain;
+            font-size: 1rem;
+            gap: 1rem;
+        }
+        .logo {
             width: 3rem;
             height: 3rem;
         }
@@ -172,11 +179,28 @@
             border-bottom-color: var(--nav-hover-border-color, var(--neon-highlight1));
         }
 
-        .container {
+        .container, .fullscreen-sketch-wrap {
             max-width: 100%;
             margin: 0 auto;
             padding: 0 1rem;
         }
+
+        .fullscreen-sketch-wrap {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        #screen-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+
 
         section {
             padding: 1rem 5rem;
@@ -207,7 +231,7 @@
         .about-text {
             flex: 1;
             min-width: 280px;
-            
+            line-height: 1;            
         }
 
         .about-profile {
@@ -296,8 +320,9 @@
 
         .about-content {
             font-size: 1.1rem;
-            line-height: 1.8;
+            line-height: 1.4;
             color: #555;
+            
         }
 
 
@@ -320,34 +345,28 @@
             margin-bottom: 0.5rem;
         }
 
-        .skills-canvas-wrap {
-            margin-top: 1rem;
-            background: var(--white);
-            padding: 0rem;
-        }
-
-        #skills-canvas {
-            width: 100%;
-            height: 5%;
-            display: block;
-            border-radius: 0px;
-            overflow: hidden;
-            position: relative;
-        }
-
+        .skills-canvas-wrap,
         .news-canvas-wrap {
             margin-top: 1rem;
             background: var(--white);
             padding: 0rem;
         }
 
+        #skills-canvas,
         #news-canvas {
             width: 100%;
-            height: 5%;
+            height: clamp(100px, 12vh, 200px);
+            max-height: 320px;
             display: block;
             border-radius: 0px;
             overflow: hidden;
             position: relative;
+        }
+
+        #screen-canvas {
+            width:100%;
+            height: 100%;
+
         }
 
         .about-content p {
@@ -874,8 +893,11 @@
 
 
     <nav>
+        <div class="logo-and-name">
         <div class="logo">
             <img src="images/half_circle.png" style="width: 3rem; height: 3rem">
+        </div>
+        <p style="font-style: italic; font-weight:500; font-size: 1.2rem;">SAFIYYAH NAWAZ </p>
         </div>
         <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
             <span class="hamburger"></span>
@@ -891,23 +913,13 @@
 
     
     <div class="container">
-        <!-- <div class ="doodles">    </div> -->
+        <div class="fullscreen-sketch-wrap">
+            <div id="screen-canvas" aria-label="p5.js canvas placeholder"></div>
         
         <!-- About Section -->
         <section id="about">
             
             <div class="about-section">
-                <div class="about-text about-content">
-                    <p>
-                        I'm <span class="tooltip">Safiyyah<span class="tooltip-content">meow</span></span>, an interdisciplinary researcher and creative practitioner interested in understanding how we experience and find meaning through art, music and culture. I am trained in music psychology and neuroaesthetics, and I work collaboratively with researchers across disciplines including cognitive science, computing and museum studies. My primary work examines how music shapes the way we form and retrieve autobiographical memories, which you can learn more about in my <a href="projects.html">research</a> page.
-                    </p>                    
-                    <p>
-                        As a self-taught creative, I explore the intersection of art, science and technology through both research and creative practice, with a emphasis on creating work that is meaningful, accessible and socially impactful. I am especially interested in decolonial approaches to psychological research, open science and citizen science. Check out <a href=www.memoryrecords.xyz>Memory Records</a>, my current passion project, for an example of this work. 
-                    </p>
-                    <p>
-                         I welcome opportunities for collaboration, partnerships or speaking engagements. Get in touch for more information!
-                    </p>
-                </div>
                 <div class="about-profile">
                     <div class="profile-photo">
                         <img src = "images/bakatwa.jpg" alt="Profile Photo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 200px; border: 5px solid var(--neon-highlight3)">
@@ -922,6 +934,18 @@
                         <a href="https://www.linkedin.com/in/safiyyahnawaz/" target="_blank"><span class="logo-placeholder"><img src = "images/linkedin.png"></a>
                     </div>
                 </div>
+                <div class="about-text about-content">
+                    <p>
+                        I'm Safiyyah, an interdisciplinary researcher and creative practitioner interested in understanding how we experience and find meaning through art, music and culture. I am trained in music psychology and neuroaesthetics, and I work collaboratively with researchers across disciplines including cognitive science, computing and museum studies. My primary work examines how music shapes the way we form and retrieve autobiographical memories, which you can learn more about in my <a href="projects.html">research</a> page.
+                    </p>                    
+                    <p>
+                        As a self-taught creative, I explore the intersection of art, science and technology through both research and creative practice, with a emphasis on creating work that is meaningful, accessible and socially impactful. I am especially interested in decolonial approaches to psychological research, open science and citizen science. Check out <a href=www.memoryrecords.xyz>Memory Records</a>, my current passion project, for an example of this work. 
+                    </p>
+                    <p>
+                         I welcome opportunities for collaboration, partnerships or speaking engagements. Get in touch for more information!
+                    </p>
+                </div>
+                
             </div>
         </section>
 
@@ -1068,7 +1092,7 @@
             </div>
         </section>
 
-
+        </div>
     </div>
 
     <footer>
@@ -1216,7 +1240,7 @@ if (sketchContainer) {
     new p5((p) => {
         let numCircles = 10;
         let circles = [];
-        let neonColors = [p.color('#f33cea'), p.color('#2cfa3a'), p.color('#58f0f8')];
+        let neonColors = [p.color('#f452ec'), p.color('#2cfa3a'), p.color('#58f0f8')];
 
         class Circle {
             constructor(x,y,radius,color){
@@ -1307,7 +1331,7 @@ if (newsContainer) {
     new p5((p) => {
         let numCircles = 10;
         let circles = [];
-        let neonColors = [p.color('#f33cea'), p.color('#2cfa3a'), p.color('#58f0f8')];
+        let neonColors = [p.color('#f452ec'), p.color('#2cfa3a'), p.color('#58f0f8')];
 
         class Circle {
             constructor(x,y,radius,color){
@@ -1393,6 +1417,33 @@ if (newsContainer) {
     }, newsContainer);
 }
 </script>
+<!-- commenting out container for any  -->
+<!-- <script>
+    const screenContainer = document.getElementById('screen-canvas');
 
+    if (screenContainer) {
+    new p5((p) => {
+
+        p.setup = () => {
+            p.createCanvas(screenContainer.clientWidth, screenContainer.clientHeight);
+
+           
+        };
+        
+        p.draw = () => {
+            p.background(255);
+            p.fill(0);
+            p.circle(p.mouseX,p.mouseY, 50);
+            
+        };
+        
+
+        p.windowResized = () => {
+            p.resizeCanvas(screenContainer.clientWidth, screenContainer.clientHeight);
+        };
+    }, screenContainer);
+}
+
+</script> -->
 </body>
 </html>
