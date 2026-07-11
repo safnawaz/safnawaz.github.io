@@ -22,7 +22,9 @@
             --background-color: #ffffff;
             --white: #ffffff;
             --neon-highlight1: #f452ec;
+            --neon-highlight1_whitebg:#CD0AC3; 
             --neon-highlight2: #2cfa3a;
+            --neon_highlight2_whitebg: #03870C;
             --neon-highlight3: #58f0f8;
             --neon-highlight4: #ff9a1f;
         }
@@ -36,7 +38,7 @@
         }
 
         a {
-            color: var(--neon-highlight1);
+            color: var(--neon-highlight1_whitebg);
             text-decoration: none;
             transition: color 0.3s;
         }
@@ -366,8 +368,7 @@
                 top: 100%;
                 right: 0;
                 background: #000000;
-                width: 90%;
-                max-width: 320px;
+                border: 3px solid var(--neon-highlight2);
                 box-shadow: 0 12px 40px rgba(0,0,0,0.12);
                 flex-direction: column;
                 gap: 0;
@@ -376,6 +377,8 @@
                 margin: 0;
                 padding: 0.75rem 1rem;
                 border-radius: 8px;
+                width: min(320px, calc(100% - 1.5rem));
+                max-width: 250px;
             }
 
             nav ul.show {
@@ -399,11 +402,6 @@
             .nav-toggle {
                 display: inline-flex;
                 margin-right: 0;
-            }
-
-            nav ul {
-                width: calc(100% - 2rem);
-                max-width: 360px;
             }
         }
     </style>

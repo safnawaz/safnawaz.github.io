@@ -25,9 +25,13 @@
             --background-color: #ffffff;
             --white: #ffffff;
             --neon-highlight1: #f452ec;
+            --neon-highlight1_whitebg:#CD0AC3; 
             --neon-highlight2: #2cfa3a;
+            --neon_highlight2_whitebg: #03870C;
             --neon-highlight3: #58f0f8;
+            --neon-highlight3_whitebg: #068389;
             --neon-highlight4: #ff9a1f;
+            --neon-highlight4_whitebg: #B36200;
         }
 
         body {
@@ -182,7 +186,7 @@
         .container, .fullscreen-sketch-wrap {
             max-width: 100%;
             margin: 0 auto;
-            padding: 0 1rem;
+            padding: 0 0.4rem;
         }
 
         .fullscreen-sketch-wrap {
@@ -489,7 +493,7 @@
             padding: 1.5rem;
             border-radius: 0px;
             border-left: 14px solid var(--neon-highlight1);
-            color: var(--neon-highlight1);
+            color: var(--neon-highlight1_whitebg);
             font-size: 1.25rem;
         }
 
@@ -498,7 +502,7 @@
             padding: 1.5rem;
             border-radius: 0px;
             border-left: 14px solid var(--neon-highlight2);
-            color: var(--neon-highlight2);
+            color: var(--neon_highlight2_whitebg);
             font-size: 1.25rem;
         }
 
@@ -508,7 +512,7 @@
             padding: 1.5rem;
             border-radius: 0px;
             border-left: 14px solid var(--neon-highlight3);
-            color: var(--neon-highlight3);
+            color: var(--neon-highlight3_whitebg);
             font-size: 1.25rem;
         }
 
@@ -517,7 +521,7 @@
             padding: 1.5rem;
             border-radius: 0px;
             border-left: 14px solid var(--neon-highlight4);
-            color: var(--neon-highlight4);
+            color: var(--neon-highlight4_whitebg);
             font-size: 1.25rem;
         }
 
@@ -780,8 +784,7 @@
                 top: 100%;
                 right: 0;
                 background: #000000;
-                width: 90%;
-                max-width: 320px;
+                border: 3px solid var(--neon-highlight2);
                 box-shadow: 0 12px 40px rgba(0,0,0,0.12);
                 flex-direction: column;
                 gap: 0;
@@ -790,6 +793,8 @@
                 margin: 0;
                 padding: 0.75rem 1rem;
                 border-radius: 8px;
+                width: min(320px, calc(100% - 1.5rem));
+                max-width: 250px;
             }
 
             nav ul.show {
@@ -813,11 +818,6 @@
             .nav-toggle {
                 display: inline-flex;
                 margin-right: 0;
-            }
-
-            nav ul {
-                width: calc(100% - 2rem);
-                max-width: 360px;
             }
         }
 
@@ -936,10 +936,10 @@
                 </div>
                 <div class="about-text about-content">
                     <p>
-                        I'm Safiyyah, an interdisciplinary researcher and creative practitioner interested in understanding how we experience and find meaning through art, music and culture. I am trained in music psychology and neuroaesthetics, and I work collaboratively with researchers across disciplines including cognitive science, computing and museum studies. My primary work examines how music shapes the way we form and retrieve autobiographical memories, which you can learn more about in my <a href="projects.html">research</a> page.
+                        I'm Safiyyah, an interdisciplinary researcher and creative practitioner interested in understanding how we experience and find meaning through art, music and culture. I am trained in music psychology and neuroaesthetics, and I work collaboratively with researchers across disciplines including cognitive science, computing and museum studies. My primary work examines how music shapes the way we form and retrieve autobiographical memories, which you can learn more about in my <a href="research.html">research</a> page.
                     </p>                    
                     <p>
-                        As a self-taught creative, I explore the intersection of art, science and technology through both research and creative practice, with a emphasis on creating work that is meaningful, accessible and socially impactful. I am especially interested in decolonial approaches to psychological research, open science and citizen science. Check out <a href=www.memoryrecords.xyz>Memory Records</a>, my current passion project, for an example of this work. 
+                        As a self-taught creative, I explore the intersection of art, science and technology through both research and creative practice, with a emphasis on creating work that is meaningful, accessible and socially impactful. I am especially interested in decolonial approaches to psychological research, open science and citizen science. Check out <a href=https:/memoryrecords.xyz target="_blank">Memory Records</a>, my current passion project, for an example of this work. 
                     </p>
                     <p>
                          I welcome opportunities for collaboration, partnerships or speaking engagements. Get in touch for more information!
@@ -976,7 +976,7 @@
                             <div class="tag">Python</div>
                             <div class="tag-sub">librosa</div>
                             <div class="tag">HTML/CSS</div>
-                            <div class="tag">Unix</div>
+                            <div class="tag">Unix/Linux</div>
                             <div class="tag-sub">FSL</div>
                             <div class="tag">Unity</div>
                             <div class="tag">PsychoPy</div>
@@ -990,6 +990,7 @@
                         <div class="tag">Behavioural research</div>
                         <div class="tag">Virtual reality</div>
                         <div class="tag">EEG</div>
+                        <div class="tag">fMRI</div>
                         <div class="tag">Experience sampling</div>
                         <div class="tag">Bayesian inference</div>
                         <div class="tag">Mixed-effects modelling</div>
@@ -1006,7 +1007,7 @@
                         <div class="tag">Neuroaesthetics</div>
                         <div class="tag">Cross-cultural studies</div>
                         <div class="tag">Museum studies</div>
-                        <div class="tag">Decoloniality </div>
+                        <div class="tag">Decolonial analysis</div>
                         <div class="tag">Musical reward</div>
                     </div>
                 </div>
@@ -1295,10 +1296,11 @@ if (sketchContainer) {
 
             p.fill(255);
             p.noStroke();
-            p.textSize(34);
             p.textAlign(p.CENTER,p.CENTER);
-            
-            p.text("SKILLS & EXPERTISE",p.width/2,p.height/2);
+            const responsiveSize = p.constrain(p.width * 0.06, 18, 40);
+            p.textSize(responsiveSize);
+            const label = p.width < 420 ? "SKILLS\n& EXPERTISE" : "SKILLS & EXPERTISE";
+            p.text(label, p.width/2, p.height/2);
         
     
             moveX += p.map(p.mouseX,0,p.width, -.5, .5);
@@ -1384,10 +1386,12 @@ if (newsContainer) {
 
             p.fill(255);
             p.noStroke();
-            p.textSize(34);
-            p.textAlign(p.CENTER,p.CENTER);
             
-            p.text(myText,p.width/2,p.height/2);
+            p.textAlign(p.CENTER,p.CENTER);
+             const responsiveSize = p.constrain(p.width * 0.06, 30, 40);
+            p.textSize(responsiveSize);
+
+            p.text(myText, p.width/2, p.height/2);
         
             for(let i =0;i < circles.length; i++){
                 circles[i].show();  
