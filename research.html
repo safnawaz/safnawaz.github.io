@@ -27,6 +27,8 @@
             --neon_highlight2_whitebg: #03870C;
             --neon-highlight3: #58f0f8;
             --neon-highlight4: #ff9a1f;
+            --carousel-image-max-width: 600px;
+            --carousel-image-max-height: 300px;
         }
 
         html, body {
@@ -209,13 +211,13 @@
             max-width: 1160px;
             margin: 0.5rem auto 1.25rem;
             height: auto;
-            max-height: 74vh;
+            max-height: 65vh;
         }
 
         .carousel {
             width: 100%;
             height: auto;
-            max-height: 74vh;
+            max-height: 80vh;
             position: relative;
             overflow: hidden;
             background: #ffffffef;
@@ -233,8 +235,8 @@
         .carousel-slide {
             min-width: 100%;
             height: auto;
-            max-height: 74vh;
-            padding: 0.6rem 0.85rem 0.85rem;
+            max-height: 65vh;
+            padding: 0.4rem 0.6rem;
             box-sizing: border-box;
             overflow-y: auto;
             overflow-x: hidden;
@@ -242,7 +244,7 @@
 
         .project-item {
             display: grid;
-            grid-template-columns: minmax(200px, 290px) minmax(0, 1fr);
+            grid-template-columns: 1fr;
             gap: 0.85rem;
             align-items: start;
             border-top: 2px dashed var(--neon-highlight1);
@@ -250,7 +252,7 @@
         }
 
         .project-item > .project-image-wrap {
-            grid-row: span 2;
+            width: 100%;
         }
 
         .project-image-wrap {
@@ -263,9 +265,9 @@
 
         .carousel-image {
             display: block;
-            width: auto;
-            max-width: min(100%, 240px);
-            max-height: 220px;
+            width: 100%;
+            max-width: min(100%, var(--carousel-image-max-width));
+            max-height: min(var(--carousel-image-max-height), 65vh);
             aspect-ratio: 1 / 1;
             object-fit: contain;
             border-radius: 16px;
@@ -276,7 +278,7 @@
 
         .project-content {
             min-width: 0;
-            grid-column: 2;
+            grid-column: auto;
             padding: 0.45rem 0.2rem 0.2rem 0.1rem;
         }
 
@@ -414,9 +416,10 @@
         .item-subtitle {
             color: var(--neon-highlight1_whitebg);
             font-weight: 500;
-            font-size: 0.8rem;
-            text-align: center;
+            font-size: 0.75rem;
+            text-align: left;
             margin-top: 0.2rem;
+            max-width: 500px;
         }
 
         .item-date {
@@ -520,18 +523,21 @@
 
         .tooltip .tooltip-content {
             color: white;
+            background-color: rgba(0,0,0, 0.95);
+            font-size: 0.9rem;
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
             bottom: 120%;
-            background: rgba(0,0,0,0.85);
-            padding: 8px;
+            padding: 0.3rem;
             border-radius: 8px;
             display: none;
             z-index: 1000;
             box-shadow: 0 6px 18px rgba(0,0,0,0.3);
             text-align: center;
-            max-width: 260px;
+            min-width: 150px;
+            max-width: 1000px;
+            hyphens:none;
         }
         .tooltip .tooltip-content img {
             display: block;
@@ -550,6 +556,115 @@
         .tooltip:focus .tooltip-content {
             display: block;
         }
+
+        #myImg {
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: block;
+            width: 100%;
+            max-width: min(100%, var(--carousel-image-max-width));
+            max-height: var(--carousel-image-max-height);
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+            border-radius: 16px;
+            background: transparent;
+            margin: 0 auto 0.5rem;
+            padding: .5rem;
+
+        }
+
+        #myImg:hover {opacity: 0.7;}
+
+
+        /* The Modal (background) */
+        .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        inset: 0;
+        z-index: 100000; /* Sit above navbar */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgba(0,0,0,0.85); /* Black w/ opacity */
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        }
+
+        /* Modal Content (Image) */
+        .modal-content {
+        margin: 0 auto;
+        display: block;
+        width: auto;
+        max-width: min(90%, 900px);
+        max-height: 90vh;
+        object-fit: contain;
+        }
+
+        /* Add Animation - Zoom in the Modal */
+        .modal-content {
+        animation-name: zoom;
+        animation-duration: 0.6s;
+        }
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+.close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    color: var(--neon-highlight2);
+    font-size: 36px;
+    font-weight: bold;
+    transition: 0.2s;
+    z-index: 100001;
+    background: #000000;
+}
+
+.close:hover,
+.close:focus {
+  color: var(--neon-highlight2);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+
+/* Mobile optimisation for modal image */
+@media only screen and (max-width: 480px){
+    .modal {
+        padding-top: 20px;
+    }
+    .modal-content {
+        width: 100%;
+        height: auto;
+        max-height: 90vh;
+        object-fit: contain;
+    }
+    .close {
+        top: 10px;
+        right: 15px;
+        font-size: 32px;
+    }
+}
+
+/* Disable nav interactions while modal open */
+.modal-open nav {
+        pointer-events: none;
+        opacity: 0.6;
+}
 
         @media (max-width: 768px) {
             .project-item {
@@ -574,7 +689,7 @@
                 max-width: 100%;
                 height: auto;
                 max-height: none;
-                aspect-ratio: 16 / 9;
+                /* aspect-ratio: 16 / 9; */
                 object-fit: cover;
                 border-radius: 16px;
                 margin: 0 0 1rem;
@@ -707,6 +822,17 @@
                 transform: scale(0.8);
                 left: -1.5rem;
             }
+
+            .carousel-image {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                max-height: none;
+                aspect-ratio: 16 / 9;
+                object-fit: cover;
+                border-radius: 16px;
+                margin: 0 0 1rem;
+            }
         }
     </style>
 </head>
@@ -743,9 +869,12 @@
                             <hr class="dotted">
                         </div> 
                         
-                        <div class="project-item">                            
+                        <div class="project-item">         
+                                  
+
                             <div class="project-image-wrap">
-                                <img src="images/MR.png" alt="Project 1 screenshot" class="carousel-image" style="align-items: flex-start" />
+                                <!-- thumbnail image (click to open modal) -->
+                                <img id="myImg" class="modal-img carousel-image" src="images/MEAM_fig.png">
                                 <div class="item-subtitle"><i><b>Collaborators:</b> Dr Diana Omigie (supervision); Dr Manuel Anglada-Tort (NLP); Felix Noble (NLP), James Brown (MSc research), Cooper Overton (MSc research), Niki K (web development, Memory Records)</i></div>         
                             </div>
                             <div class="project-content">
@@ -800,7 +929,7 @@
                         
                         <div class="project-item">                            
                             <div class="project-image-wrap">
-                                <img src="images/WWW.png" alt="Project 1 screenshot" class="carousel-image" style="align-items: flex-start" />
+                                <img src="images/WWW.png"  class="modal-img carousel-image" />
                                 <div class="item-subtitle"><i><b>Collaborators:</b>  Dr Diana Omigie (supervision); Ellen Murphy (MSc research); Eimear North (MSc research)</i></div>         
                             </div>
                             <div class="project-content">
@@ -808,7 +937,7 @@
                                 <div class="item-description">
                                     <p>Music-supported episodic memory is a term I use to describe the phenomenon of music influencing the way a memory for an event or experience is formed. What I am interested in better understanding is how the presence of music during an event, its objective features, and the listener's experience of the music all contribute to memory success.</p>
                                     <br>
-                                    <p>In my MSc work, I developed an online paradigm in  <span class="tooltip">PsychoPy<span class="tooltip-content">Python based experiment software</span></span> based on the <i>What-Where-When</i> task, which assesses episodic memory by asking participants to encode and then recall <i>what</i> objects they moved, <i>where</i> they moved them to, and in what order (<i>when</i>). Participants dragged items on the screen to different 'hiding spots' in the presence of different kinds of emotional music. </p>
+                                    <p>In my MSc work, I developed an online paradigm in PsychoPy based on the <i>What-Where-When</i> task, which assesses episodic memory by asking participants to encode and then recall <i>what</i> objects they moved, <i>where</i> they moved them to, and in what order (<i>when</i>). Participants dragged items on the screen to different 'hiding spots' in the presence of different kinds of emotional music. </p>
                                     <br>
                                     <p>We found that calming, positive music was the most beneficial for accurate memory, and that negative emotional responses impaired memory. In a follow-up study using the same paradigm, we found that, in the presence of better-liked music, memory for <i>what</i> was moved, was improved. </p>
                                                                        
@@ -850,15 +979,15 @@
                             <div class="item-title">MUSIC-SUPPORTED EPISODIC AUTOBIOGRAPHICAL MEMORY: VIRTUAL REALITY</div>                              
                         </div> 
                         
-                        <div class="project-item">                            
+                        <div class="project-item">                   
                             <div class="project-image-wrap">
-                                <img src="images/VR.jpeg" alt="Project 1 screenshot" class="carousel-image" style="align-items: center" />
+                                <img src="images/VR_fig.png"  class="modal-img carousel-image" />
                                 <div class="item-subtitle"><i><b>Collaborators:</b>  Dr. Diana Omigie (supervision), Ju Zhang (Unity build), Dr Marco Gillies (supervision)</i></div>         
                             </div>
                             <div class="project-content">
                                
                                 <div class="item-description">
-                                    <p>I also use virtual reality to explore music-supported memory, as it can simulate realistic, immersive experiences of music-listening. Using 360-degree videos from the <a href="https://www.uni-osnabrueck.de/fb8/psychologie/fachgebiete/allgemeine-psychologie-i/luvre" target="_blank"> Library for Universal Virtual Reality Experiments</a>, we created a virtual reality 'holiday', where participants spent a day of sightseeing in various scenes while listening to different kinds of music.</p>
+                                    <p>I also use virtual reality to explore music-supported memory, as it can simulate realistic, immersive experiences of music-listening. Using 360-degree videos from the <a href="https://www.uni-osnabrueck.de/fb8/psychologie/fachgebiete/allgemeine-psychologie-i/luvre" target="_blank"> Library for Universal Virtual Reality Experiments</a>, we created a virtual reality 'holiday', where participants spent a day of sightseeing in various scenes while listening to different kinds of music. The Unity build was done by my colleague <a href="https://www.mianzi-lizi.com/ju-goldsmiths-work">Ju</a> from the <a href="https://www.seevrlab.com/">SEE-VR Lab</a>, and you can access the project <a href ="https://github.com/ju-xr/Safiyyah-project">here</a>. </p>
                                     <br>
                                     <p>At two time points after the VR experience, I tested their memory to determine how features of the music - how positive, energetic, familiar and well-liked it is - influence memory. We saw that the <span class="tooltip">valence<span class="tooltip-content">how positive something is: lower valence = more negative, higher-valence = more positive</span></span> of the music plays a key role in memory formation, dependent on how familiar the music is to the listener. </p>
                                     <br>
@@ -895,7 +1024,7 @@
                         
                         <div class="project-item">                            
                             <div class="project-image-wrap">
-                                <img src="images/esm.png" alt="Project 1 screenshot" class="carousel-image" style="align-items: center" />
+                                <img src="images/pres_sempre2.png" class="modal-img carousel-image" />
                                 <div class="item-subtitle"><i><b>Collaborators:</b>  Dr. Diana Omigie (supervision)</i></div>         
                             </div>
                             <div class="project-content">
@@ -978,6 +1107,51 @@
             });
         });
     });
+</script>
+<!-- Shared modal markup (used by all carousel images) -->
+<div id="myModal" class="modal" aria-hidden="true">
+    <button class="close" aria-label="Close image">&times;</button>
+    <img class="modal-content" id="img01" alt="">
+    <div id="caption"></div>
+</div>
+
+<script>
+    // Reusable modal for any image with class 'modal-img'
+    (function(){
+        var modal = document.getElementById("myModal");
+        if(!modal) return;
+        var modalImg = document.getElementById("img01");
+        var captionText = document.getElementById("caption");
+
+        // open modal when any .modal-img is clicked
+        document.querySelectorAll('.modal-img').forEach(function(imgEl){
+            imgEl.style.cursor = 'pointer';
+            imgEl.addEventListener('click', function(){
+                // show modal as flex so content can be centered
+                modal.style.display = 'flex';
+                modal.setAttribute('aria-hidden','false');
+                document.body.classList.add('modal-open');
+                // hide/disable nav while modal open for accessibility
+                var nav = document.querySelector('nav'); if(nav){ nav.setAttribute('aria-hidden','true'); }
+                modalImg.src = imgEl.src;
+                modalImg.alt = imgEl.alt || '';
+                captionText.innerHTML = imgEl.alt || '';
+                // focus close button for easier keyboard access
+                var closeBtn = modal.querySelector('.close'); if(closeBtn) closeBtn.focus();
+            });
+        });
+
+        // close handlers
+        var closeBtn = modal.querySelector('.close');
+        if(closeBtn) closeBtn.addEventListener('click', function(){ modal.style.display = 'none'; modal.setAttribute('aria-hidden','true'); document.body.classList.remove('modal-open'); var nav = document.querySelector('nav'); if(nav){ nav.removeAttribute('aria-hidden'); } });
+
+        // click outside image to close
+        modal.addEventListener('click', function(e){
+            if(e.target === modal) { modal.style.display = 'none'; modal.setAttribute('aria-hidden','true'); document.body.classList.remove('modal-open'); var nav = document.querySelector('nav'); if(nav){ nav.removeAttribute('aria-hidden'); } }
+        });
+        // escape key to close
+        document.addEventListener('keydown', function(e){ if(e.key === 'Escape') { modal.style.display = 'none'; modal.setAttribute('aria-hidden','true'); document.body.classList.remove('modal-open'); var nav = document.querySelector('nav'); if(nav){ nav.removeAttribute('aria-hidden'); } } });
+    })();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
 <script>
