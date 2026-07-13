@@ -127,14 +127,25 @@
         .nav-toggle[aria-expanded="true"] .hamburger::before { transform: translateY(7px) rotate(45deg); }
         .nav-toggle[aria-expanded="true"] .hamburger::after { transform: translateY(-7px) rotate(-45deg); }
 
-        .logo {
+       .logo-and-name {
             padding:0rem 0rem 0rem 0rem;
             width: 100%;
-            max-width: 90%;
+            max-width: 30%;
+            display:flex;
+            align-items: center;
+            flex-direction: row;
             justify-content: flex-start;
             object-fit: contain;
+            font-size: 1rem;
+            gap: 1rem;
+            color: white;
+            line-height: 1.2;
+        }
+
+        .logo {
             width: 3rem;
             height: 3rem;
+            filter: invert(1);
         }
 
         .logo:hover {
@@ -855,8 +866,11 @@
 </head>
 <body>
  <nav>
-        <div class="logo">
-            <img src="images/half_circle.png" style="width: 3rem; height: 3rem; filter:invert(1)">
+        <div class="logo-and-name">
+            <div class="logo">
+                <img src="images/half_circle.png" style="width: 3rem; height: 3rem">
+            </div>
+            <p style="font-style: italic; font-weight:500; font-size: 1.2rem;">SAFIYYAH NAWAZ </p>
         </div>
         <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
             <span class="hamburger"></span>
