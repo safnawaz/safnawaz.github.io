@@ -666,6 +666,23 @@
         opacity: 0.6;
 }
 
+/* Fix: add horizontal padding for collapsible content on small phones
+     and ensure resource lists wrap instead of overflowing. */
+@media only screen and (max-width: 480px) {
+    .resource-section .content,
+    .project-resources .content {
+        padding: 0 1rem !important;
+        box-sizing: border-box;
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
+
+    .resource-list {
+        padding-right: 1rem !important;
+        box-sizing: border-box;
+    }
+}
+
         @media (max-width: 768px) {
             .project-item {
                 grid-template-columns: 1fr;
