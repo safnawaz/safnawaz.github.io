@@ -119,14 +119,22 @@
         .nav-toggle[aria-expanded="true"] .hamburger::before { transform: translateY(7px) rotate(45deg); }
         .nav-toggle[aria-expanded="true"] .hamburger::after { transform: translateY(-7px) rotate(-45deg); }
 
-        .logo {
+        .logo-and-name {
             padding:0rem 0rem 0rem 0rem;
             width: 100%;
-            max-width: 90%;
+            max-width: 30%;
+            display:flex;
+            align-items: center;
+            flex-direction: row;
             justify-content: flex-start;
             object-fit: contain;
+            font-size: 1rem;
+            gap: 1rem;
+        }
+        .logo {
             width: 3rem;
             height: 3rem;
+            filter: invert(1);
         }
 
         .logo:hover {
@@ -169,18 +177,17 @@
         .public-engagement-item {
             display: flex;
             align-items: center;
-            padding: 1.5rem;
+            padding: 1.25rem 1.5rem;
             gap: 1.5rem;
         }
 
         .public-engagement-item img,
         .public-engagement-item video {
-            object-fit: cover;
+            object-fit:cover;
             border-radius: 50%;
-            max-width: 300px;
-            width: 100%;
-            max-height: 300px;
-            border: 5px double var(--neon-highlight1);
+            max-width: 400px;
+            max-width: 400px;
+            border: 10px double var(--neon-highlight1);
             align-items: center;
         }
 
@@ -284,6 +291,7 @@
             align-items: center;
             gap: 1rem;
             padding: 2rem 2rem;
+            text-align: center;
         }
 
         .tag {
@@ -332,19 +340,21 @@
 
         .tooltip .tooltip-content {
             color: black;
-            background-color: rgba(255, 255, 255, 0.85);
+            background-color: rgba(255, 255, 255, 0.95);
             font-size: 0.9rem;
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
             bottom: 120%;
-            padding: 8px;
+            padding: 0.3rem;
             border-radius: 8px;
             display: none;
             z-index: 1000;
             box-shadow: 0 6px 18px rgba(0,0,0,0.3);
             text-align: center;
+            min-width: 150px;
             max-width: 1000px;
+            hyphens:none;
         }
 
         .tooltip:hover .tooltip-content,
@@ -401,6 +411,8 @@
             justify-content: center;
             width: 100%;
             min-height: 140px;
+            max-height: 140px;
+            aspect-ratio: 1/1;
             padding: 1rem;
             border-radius: 50%;
             border: 3px solid white;
@@ -446,15 +458,6 @@
             border-radius: 50%;
         }
 
-        .resource-button span {
-            position: relative;
-            z-index: 1;
-            color: white;
-            display: block;
-            width: 100%;
-            line-height: 1.2;
-        }
-
         .resource-button:hover {
             transform: translateY(-3px);
             border-color: var(--neon-highlight2);
@@ -462,24 +465,39 @@
 
         @media (max-width: 1200px) {
             .resource-list {
-                grid-template-columns: repeat(3, minmax(140px, 1fr));
+                grid-template-columns: repeat(2, minmax(140px, 1fr));
+            }
+
+            .resource-button{
+                aspect-ratio: 1/1;
+                max-height: 200px;
+                max-width: 200px;
+                font-size: 0.95rem;
+                border-radius: 50%;
+            }
+
+            .resource-button span {
+                padding: 0 0.35rem;
             }
         }
 
         @media (max-width: 900px) {
             .resource-list {
                 grid-template-columns: repeat(2, minmax(140px, 1fr));
+                justify-content: center;
+                padding: 0rem 2rem;
             }
 
             .resource-button {
                 aspect-ratio: 1/1;
-                min-height: 120px;
-                font-size: 0.9rem;
+                max-height: 150px;
+                max-width: 150px;
+                font-size: 0.85rem;
                 border-radius: 50%;
             }
 
             .resource-button span {
-                padding: 0 0.5rem;
+                padding: 0 0.35rem;
             }
 
             nav {
@@ -534,11 +552,17 @@
                 gap: 0.5rem;
                 align-items: center;
             }
+
+             .resource-list {
+                grid-template-columns: repeat(2,auto);
+                gap: 1rem;
+            }
         }
 
         @media (max-width: 720px) {
             .resource-list {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2,auto);
+                gap: 1rem;
             }
 
             .resource-button {
@@ -557,7 +581,7 @@
 
 
         .skills-grid {
-            padding: 1rem;
+            padding: 3rem;
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 1.5rem;
@@ -667,11 +691,15 @@
         }
 
         @keyframes colorChange {
-            from {
+            0% {
                 border-color: #2cfa3a;
             }
-            to {
+           50% {
                 border-color: #58f0f8;
+            }
+
+            100% {
+                border-color: #f452ec;
             }
         }
 
@@ -744,6 +772,11 @@
                 font-size: 0.95rem;
             }
 
+            .resource-list {
+                
+                gap: 1rem;
+            }
+
             .resource-button {
                 min-height: 120px;
                 font-size: 0.9rem;
@@ -762,11 +795,26 @@
             }
 
             .resource-button {
-                min-height: 130px;
-                font-size: 0.85rem;
+                max-height: 140px;
+                max-width: 140px;
+                font-size: 0.75rem;
             }
             
         }
+
+         @media (max-width: 490px) {
+
+            .resource-button {
+                aspect-ratio: 1/1;
+                width: min(150px, 110%);
+                max-height: 150px;
+                max-width: 140px;
+                min-height: 0;
+                min-width: 0;
+                padding: 0.25rem;
+                font-size: 0.70rem;
+            }
+
 
 
     </style>
@@ -774,8 +822,11 @@
 <body>
    
     <nav>
-        <div class="logo">
-            <img src="images/half_circle.png" style="width: 3rem; height: 3rem; filter:invert(1)">
+         <div class="logo-and-name">
+            <div class="logo">
+                <img src="images/half_circle.png" style="width: 3rem; height: 3rem">
+            </div>
+            <p style="font-style: italic; font-weight:500; font-size: 1.2rem;">SAFIYYAH NAWAZ </p>
         </div>
         <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
             <span class="hamburger"></span>
@@ -791,7 +842,7 @@
 
     <div class="container">
         <div class="public-engagement-item">
-            <img src="images/houghton.JPG" >
+            <img src="images/houghton.JPG" width="300" height="300" >
             <div class="public-engagement-text">
             <p> As a researcher I often find myself reflecting on the legacy of my work: <span class="emphasised">What is my responsibility for the knowledge I produce?</span><span class="emphasised"> Where will the outputs of my research end up?</span> <span class="emphasised"> <i>Who will be able to access and engage with it, and to what end?</i></span> These questions motivate me to keep the inclusivity, accessibility, and impact of my research at the front of my mind and practice. </p>
             <br>
@@ -800,9 +851,9 @@
         </div>
         <div class="public-engagement-item">
             <div class="public-engagement-text">
-                  <p> Throughout my years studying music and autobiographical memory, I noticed that nearly all of the research about music and memory focuses on <span class="tooltip"> Western populations and Western musical genres.<span class = "tooltip-content">Often referred to as the "WEIRD" problem: samples are largely Western, Educated, Industrialised, Rich and Democratic</span> </span> This is a massive problem as it limits the scientific community's ability to draw conclusions about music's relationship with memory for <span class="tooltip">populations that aren't Western<span class="tooltip-content"> which happens to be the majority of the world!</span> </span>. It also reinforces <i>epistemic exclusion</i>, the silencing and displacement of local/indigenous knowledge - for example, knowledge which is embedded in cultural traditions like music - and <i>epistemological violence</i>, which constructs the "Other" (in this case, non-Western populations) as non-representative or general exceptions to a rule.   </p>
+                  <p> Throughout my years studying music and autobiographical memory, I noticed that nearly all of the research about music and memory focuses on <span class="tooltip"> Western populations<span class = "tooltip-content">Often referred to as the "WEIRD" problem: samples are largely Western, Educated, Industrialised, Rich and Democratic</span> </span> and Western musical genres. This is a massive problem as it limits the scientific community's ability to draw conclusions about music's relationship with memory for <span class="tooltip">populations that aren't Western<span class="tooltip-content"> which happens to be the majority of the world!</span> </span>. It also reinforces <i>epistemic exclusion</i>, the silencing and displacement of local/indigenous knowledge - for example, knowledge which is embedded in cultural traditions like music - and <i>epistemological violence</i>, which constructs the "Other" (in this case, non-Western populations) as non-representative or general exceptions to a rule.   </p>
                 <br>
-                <p> This is a trend throughout research in music psychology, and in psychological and scientific disciplines more broadly. So, from my position, I wanted to attempt to move some of the research into a more equitable and representative direction. This led to the conception of <a href="https://memoryrecords.xyz/" target="_blank">Memory Records</a>, a citizen science public engagement project designed to promote global, active participation in music-memory research.  </p>
+                <p> This is a trend throughout research in music psychology, and in psychological and scientific disciplines more broadly, so I wanted to attempt to move some of the research into a more equitable and representative direction. This led to the conception of <a href="https://memoryrecords.xyz/" target="_blank">Memory Records</a>, a citizen science public engagement project designed to promote global, active participation in music-memory research.  </p>
                 
                 </div>
             <a href="https://memoryrecords.xyz/" target="_blank">
@@ -812,11 +863,10 @@
             </a>
         </div>
          <div class="public-engagement-item">
-            <img src="images/sofar.jpeg" style="border-radius: 0;">
             <div class="public-engagement-text">
                   <p> Currently populated with data from my <a href="https://www.gold.ac.uk/news/2025/music-and-memories-/" target="_blank">first PhD study</a> which samples memories participants have associated with specific songs from their <span class="tooltip">reminiscence bumps<span class="tooltip-content">the years of childhood to early adulthood, where we tend to concentrate memories and music preferences</span></span> and beyond, Memory Records establishes the first living musical memory archive of its kind. You can already have a look and sort through some of the memories there, see the patterns, and begin to think about how music has shaped your own life story. With friends and collaborators I am working towards making this an active open data collection tool and a meaningful archive, with the aim to encourage participation globally, so that we can better understand music's role in memory across cultures and traditions. All you'll need to be a part of this is an internet connection and 5 minutes MAX of your time. Sign up <a href="https://docs.google.com/forms/d/e/1FAIpQLSdE3318DKaKCWXTCy2t7D9E9JMymXxVWvw6ylrII_NEHdEe1A/viewform" target="_blank">here</a> to be notified when the full site is live; I look forward to reading your memories there in the near future...</p>
                 <br>
-                <p>If you have any questions, my door is open for collaborations, partnerships, consulting opportunities and speaking engagements. I am an experienced <span class="tooltip">public speaker<span class="tooltip-content">and yapper, if you get me started</span></span>, with 20+ concerts that I've MC'd, multiple international conference presentations, and even a <span class="tooltip">wedding<span class="tooltip-content">Not a joke! I officiated my brother's wedding in 2023. It was amazing.</span> </span> under the belt. <a href="mailto:nawazsafiyyah@proton.me" target="_blank">Get in touch!</a></p>
+                <p>If you have any questions, my door is open for collaborations, partnerships, consulting opportunities and speaking engagements. I am an experienced public speaker, with 20+ concerts that I've MC'd, multiple international conference presentations, and even a <span class="tooltip">wedding<span class="tooltip-content">Not a joke! I officiated my brother's wedding in 2023. It was amazing.</span> </span> under the belt. <a href="mailto:nawazsafiyyah@proton.me" target="_blank">Get in touch!</a></p>
                 </div>
         </div>
         <div class="tags">
@@ -834,7 +884,8 @@
         <div class="skills-grid">
                 <div class="skill-category1">
                     <h3><i>Repositories</i></h3>
-                    <p> Below are repositories for (1) a dataset of music-evoked autobiographical memories and the associated auditory features of the memory evoking music and (2) Unity resources for the virtual reality music-supported episodic memory encoding paradigm developed for my PhD research by <span class="nowrap-inline">colleague <a href="https://www.mianzi-lizi.com/ju-goldsmiths-work" target="_blank" style="text-decoration: none;">Ju Zhang</a> from Goldsmiths' <a href="https://www.seevrlab.com/" target="_blank" style="text-decoration: none;">SEE-VR LAB.</a></span></p>
+                    <p style="padding: 1rem 1.5rem;"> Below are repositories for (1) a dataset of music-evoked autobiographical memories and the associated auditory features of the memory evoking music and (2) Unity resources for the virtual reality music-supported episodic memory encoding paradigm developed for my PhD research.</p>
+                    <p style="padding: 1rem 1.5rem; "> <span class="nowrap-inline">Unity project build by <a href="https://www.mianzi-lizi.com/ju-goldsmiths-work" target="_blank" style="text-decoration: none;">Ju Zhang</a></span> </p>
                     <div class="resource-list">
                         <a class="resource-button" href="https://osf.io/jke9w/overview" target="_blank"><span>Music-evoked autobiographical memories</span></a>
                         <a class="resource-button" href="https://github.com/ju-xr/Safiyyah-project" target="_blank"><span>Episodic memory VR paradigm</span></a>
@@ -842,10 +893,10 @@
                 </div>
                 <div class="skill-category2">
                     <h3><i>Presentations</i></h3>
-                    <p> Below you can view some of the oral and poster presentations I've delivered about Memory Records and doctoral research using virtual reality, experience sampling and survey studies. </p>
+                    <p style="padding: 1rem 1.5rem;"> Below you can view some of the oral and poster presentations I've delivered about Memory Records and doctoral research using virtual reality, experience sampling and survey studies. </p>
                     <div class="resource-list">
                         <a class="resource-button" href="https://www.canva.com/design/DAHEX7FGd0U/VtaW7kRHDUyOk0P9EDafeQ/view?utm_content=DAHEX7FGd0U&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h4abe58d7b1" target="_blank" style="background-image: url('images/pres_sempre.png');"><span>Musical memories in everyday life (Sempre 2026)</span></a>
-                        <a class="resource-button" href="https://www.canva.com/design/DAG51fH-cBQ/OY7Y2ievcJ4Y-0FT5SDouA/view?utm_content=DAG51fH-cBQ&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h8a5d4a89f5" target="_blank" style="background-image: url('images/pres_dmrn.png');"><span>Memory Records (DMRN 20+, 2025)</span></a>                        
+                        <a class="resource-button" href="https://www.canva.com/design/DAG51fH-cBQ/OY7Y2ievcJ4Y-0FT5SDouA/view?utm_content=DAG51fH-cBQ&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h8a5d4a89f5" target="_blank" style="background-image: url('images/pres_dmrn.png');"><span>Memory Records (DMRN 20+ Workshop, 2025)</span></a>                        
                         <a class="resource-button" href="https://www.canva.com/design/DAGxFQ5GjUI/9s_kXqAd-VcE6ixWsVnC5Q/view?utm_content=DAGxFQ5GjUI&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h1ee2916c81" target="_blank" style="background-image: url('images/pres_exeter.png');"><span>Music-supported encoding in VR (Exeter, 2025)</span></a>
                         <a class="resource-button" href="https://www.canva.com/design/DAGD_tlq1d4/g4iwarM364OVx67DY3hHpg/view?utm_content=DAGD_tlq1d4&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h785eb9b2f1" target="_blank" style="background-image: url('images/pres_iaea.png');"><span>Features of MEAMs (ESCOM 2024; IAEA, 2024)</span></a>
                     </div>
